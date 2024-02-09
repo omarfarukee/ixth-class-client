@@ -1,7 +1,11 @@
 .account-back-img{
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../../public/login-back-img/office-desk-table-with-pencils-supplies.jpg');
     background-size: cover;
     background-position: center;
+}
+.blurry{
+    background: transparent ;
+    backdrop-filter: blur(10px) ;
 }
