@@ -36,7 +36,7 @@ export default function page() {
              { studentData ?<> <li><a>MY-PROFILE</a></li>
               <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
               </>:
-                   <li><a>LOG-IN</a></li>}
+                   <li><Link href='/login-student'>LOG-IN</Link></li>}
             </ul>
           </div>
         </div>

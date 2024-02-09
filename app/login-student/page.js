@@ -1,0 +1,88 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client'
+import React, { useState } from 'react'
+import './loginStudent.css'
+import { useForm } from 'react-hook-form';
+import { FaEye } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+export default function loginStudent() {
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
+  const handleLogin = async (data) => {
+    try {
+      const response = await fetch('http://localhost:5000/student/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Use 'data' instead of 'studentData'
+      });
+
+      const responseData = await response.json();
+      console.log('Login response:', responseData.student); // Log the entire response
+
+      if (response.ok) {
+        console.log('Login successful'); // Log success message
+        toast.success(responseData.message);
+        sessionStorage.setItem('studentData', JSON.stringify(responseData.student));
+        console.log('Student data saved to sessionStorage:', responseData.student);
+        router.push('/');
+      } else {
+        console.error('Login failed:', responseData.error || 'fail to login.'); // Log failure message
+        toast.error(responseData.error || 'fail to login.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error); // Log any errors
+      toast.error('An error occurred while logging in.');
+    }
+  };
+
+  const [types, setTypes] = useState(true)
+
+  const seePass = (type) => {
+    switch (type) {
+      case "current":
+        setTypes(!types);
+        break;
+    }
+  };
+  const passwordFieldType = (type) => {
+    switch (type) {
+      case "current":
+        return types ? "password" : "text";
+    }
+  };
+  return (
+    <div className='student-login-back-img'>
+      <div className='flex justify-center pt-5 pb-5 text-3xl text-white'>
+        <h1>Student Log-in</h1>
+      </div>
+      <div className='flex items-center justify-center'>
+        <div className='p-10 rounded-lg shadow-2xl student-from-blur'>
+          <form onSubmit={handleSubmit(handleLogin)} className=" lg:pt-5">
+            <div className="max-w-xs mb-4 border-b-2 w-80 form-control">
+              <input type="email" {...register("email", {
+                required: "Email is Required !"
+              })} className="w-full max-w-xs mb-5 text-white bg-transparent rounded-lg input" placeholder="✉ Email..." />
+              {errors.email && <small className='mt-1 ml-2 text-red-500'>{errors.email.message}</small>}
+            </div>
+            <div className="max-w-xs mb-3 border-b-2 w-80 form-control">
+              <input type={passwordFieldType("current")} {...register("password", {
+                required: "Password is Required !",
+                minLength: { value: 6, message: "Password must be 6 characters long" },
+                pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
+              })} className="w-full max-w-xs text-white bg-transparent rounded-lg input" placeholder="🗝 Password..." />
+              <div className="flex justify-end">
+                <a className='relative flex justify-end ml-2 text-2xl text-white cursor-pointer w-7 bottom-9 right-2' title="See password" onClick={() => seePass("current")}><FaEye /></a>
+              </div>
+              {errors.password && <small className='mt-1 ml-2 text-red-500'>{errors.password.message}</small>}
+            </div>
+            <input className='p-2 mt-4 mb-4 text-black bg-gray-300 bottom-5 w-80 btn rounded-2xl' value="Login" type="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
