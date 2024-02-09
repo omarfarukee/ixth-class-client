@@ -1,11 +1,12 @@
 .account-back-img{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../../public/login-back-img/office-desk-table-with-pencils-supplies.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../../public/login-back-img/top-view-desk-concept-with-tablet.jpg');
     background-size: cover;
     background-position: center;
 }
 .blurry{
     background: transparent ;
     backdrop-filter: blur(10px) ;
+    box-shadow: 0 0 10px rgb(13, 13, 14), inset 0 0 20px rgb(15, 17, 17);
 }
