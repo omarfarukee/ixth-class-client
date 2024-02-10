@@ -1,15 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './loginStudent.css'
 import { useForm } from 'react-hook-form';
 import { FaEye } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/router';
+
+import Link from 'next/link';
 export default function loginStudent() {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+
   const handleLogin = async (data) => {
     try {
       const response = await fetch('http://localhost:5000/student/login', {
@@ -38,7 +42,6 @@ export default function loginStudent() {
       toast.error('An error occurred while logging in.');
     }
   };
-
   const [types, setTypes] = useState(true)
 
   const seePass = (type) => {
@@ -60,7 +63,7 @@ export default function loginStudent() {
         <h1>Student Log-in</h1>
       </div>
       <div className='flex items-center justify-center'>
-        <div className='p-10 rounded-lg shadow-2xl student-from-blur'>
+        <div className='p-10 rounded-lg student-from-blur'>
           <form onSubmit={handleSubmit(handleLogin)} className=" lg:pt-5">
             <div className="max-w-xs mb-4 border-b-2 w-80 form-control">
               <input type="email" {...register("email", {
@@ -81,6 +84,9 @@ export default function loginStudent() {
             </div>
             <input className='p-2 mt-4 mb-4 text-black bg-gray-300 bottom-5 w-80 btn rounded-2xl' value="Login" type="submit" />
           </form>
+          <div className='flex justify-center'>
+            <small className="mt-2 font-black text-white">New Stdent ? <Link href='/createAccount' className='font-bold text-green-500'>Create Account</Link></small>
+          </div>
         </div>
       </div>
     </div>

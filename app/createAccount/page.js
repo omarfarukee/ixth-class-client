@@ -1,12 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './account.css'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaEye } from 'react-icons/fa';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function CreateAccount() {
+    const router = useRouter();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleCreateStudentAccount = async (data) => {
@@ -36,10 +40,10 @@ export default function CreateAccount() {
             console.log(responseData.student)
             if (response.ok) {
                 console.log('save student', responseData);
-                toast.success('Student ID Created successfully');
+                toast.success('Student ID Created successfully, please update Your PROFILE');
                 sessionStorage.setItem('studentData', JSON.stringify(responseData.student));
                 console.log('Student data saved to sessionStorage', responseData.stdent);
-
+                router.push('/');
             } else {
                 toast.error(responseData.error || 'An error occurred while creating the student.');
             }
@@ -49,7 +53,6 @@ export default function CreateAccount() {
         }
 
     };
-
 
     const [types, setTypes] = useState(true)
 
@@ -154,7 +157,7 @@ export default function CreateAccount() {
                             <input className='p-2 mt-4 text-black bg-gray-300 w-80 btn rounded-2xl' value="Sign Up" type="submit" />
                         </div>
                         <div className='flex justify-center'>
-                            <small className="mt-2 font-black ">Al-ready created Account? <Link className='font-bold text-green-500' href='/'>Please Log-in</Link></small>
+                            <small className="mt-2 font-black ">Al-ready created Account? <Link href='/login-student' className='font-bold text-green-500'>Please Log-in</Link></small>
                         </div>
                     </form>
                 </div>

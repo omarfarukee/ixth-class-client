@@ -1,16 +1,21 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import React from 'react'
 import Link from "next/link";
 import { FaUserCircle } from 'react-icons/fa';
 import { useStudentData } from '../Hooks/getUserData';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 export default function page() {
+  const router = useRouter();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const studentData = useStudentData();
   const handleLogout = () => {
     sessionStorage.removeItem('studentData')
     toast.success('logged out successfully')
+    router.push('/');
   }
+  
   return (
     <div>
       <div className="shadow-md navbar bg-base-100">
@@ -20,9 +25,11 @@ export default function page() {
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li><Link href='/'>HOME</Link></li>
-              <li><Link href='/createAccount'>Create-Account</Link></li>
-              <li><Link href='/'>HOME</Link></li>
+
+              {studentData ? <><li><Link href='/'>HOME</Link></li>
+              <li><Link href='/'>STUDENTS</Link></li></> :
+             <> <li><Link href='/createAccount'>Create-Account</Link></li></>}
+              
             </ul>
           </div>
         </div>
@@ -33,7 +40,7 @@ export default function page() {
           <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
             <div tabIndex={0} role="button" className="m-1 text-4xl "><FaUserCircle/></div>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border">
-             { studentData ?<> <li><a>MY-PROFILE</a></li>
+             { studentData ?<> <li><Link href='/studentProfile'>MY-PROFILE</Link></li>
               <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
               </>:
                    <li><Link href='/login-student'>LOG-IN</Link></li>}
