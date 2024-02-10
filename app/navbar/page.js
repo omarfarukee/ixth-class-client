@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from "next/link";
 import { FaUserCircle } from 'react-icons/fa';
-import { useStudentData } from '../Hooks/getUserData';
+import { useStudentData } from '../Hooks/getStudentData';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 export default function page() {
@@ -25,8 +25,8 @@ export default function page() {
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-
-              {studentData ? <><li><Link href='/'>HOME</Link></li>
+            <li><Link href='/'>HOME</Link></li>
+              {studentData ? <>
               <li><Link href='/'>STUDENTS</Link></li></> :
              <> <li><Link href='/createAccount'>Create-Account</Link></li></>}
               
