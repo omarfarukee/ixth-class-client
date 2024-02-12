@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 'use client'
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaUserEdit } from 'react-icons/fa';
 import EditStudentInfo from '../editStudentProfile/page';
+import EditStudentImage from '../editStudentImage/page';
+
 
 export default function StudentProfile() {
   const [studentData, setStudentData] = useState(null);
@@ -18,10 +20,17 @@ export default function StudentProfile() {
   }, []);
   const [isUserModalOpen, setIsUserModalOpen] = React.useState(false);
   const openUserModal = () => {
-      setIsUserModalOpen(true);
+    setIsUserModalOpen(true);
   };
   const closeUserModal = () => {
-      setIsUserModalOpen(false);
+    setIsUserModalOpen(false);
+  };
+  const [isImageModalOpen, setIsImageModalOpen] = React.useState(false);
+  const openImageModal = () => {
+    setIsImageModalOpen(true);
+  };
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
   };
   console.log(studentData?.image)
   return (
@@ -31,28 +40,41 @@ export default function StudentProfile() {
         <div className="mt-3">
           <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openUserModal}>Edit Profile</button>
         </div>
+        <div className="mt-3">
+          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Edit Profile</button>
+        </div>
       </div>
       <div className='w-full p-5'>
-      <dialog id="my_modal_4" className="modal" open={isUserModalOpen} onClose={closeUserModal}>
-                            <div className="w-11/12 max-w-5xl modal-box rounded-3xl">
-                                <div className="modal-content">
-                                    <div className="flex justify-center mb-2 border-b-8 modal-header">
-                                        <div className=''>
-                                            <FaUserEdit className="ml-5 text-6xl text-blue-900"></FaUserEdit>
-                                            <h1 className="font-bold">Edit Profile</h1>
-                                        </div>
-                                    </div>
-                                    <div className="modal-body">
-                                        <EditStudentInfo/>
-                                    </div>
-                                </div>
-                            </div>
-                            <form method="dialog" className="modal-backdrop">
-                                <button>close</button>
-                            </form>
-                        </dialog>
+        <dialog id="my_modal_4" className="modal" open={isUserModalOpen} onClose={closeUserModal}>
+          <div className="w-11/12 max-w-5xl modal-box rounded-3xl">
+            <div className="modal-content">
+              <div className="flex justify-center mb-2 border-b-8 modal-header">
+                <div className=''>
+                  <FaUserEdit className="ml-5 text-6xl text-blue-900"></FaUserEdit>
+                  <h1 className="font-bold">Edit Profile</h1>
+                </div>
+              </div>
+              <div className="modal-body">
+                <EditStudentInfo />
+              </div>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+        <dialog id="my_modal_2" className=" modal" open={isImageModalOpen} onClose={closeImageModal}>
+          <div className="modal-box rounded-2xl">
+            <div>
+              <EditStudentImage />
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
         <div >
-          <div className='w-full p-5 border '>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <Image src={studentData?.img} alt='' />}
+          <div className='w-full p-5 border '>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] rounded-full' src={studentData?.image}/>}
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Name:
@@ -60,14 +82,14 @@ export default function StudentProfile() {
               <p>{studentData?.last_name}</p></span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
-          Student Code:
+            Student Code:
             <span className='flex gap-2'><p>{studentData?.studentCode}</p>
-              </span>
+            </span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
-          Father's Name:
+            Father's Name:
             <span className='flex gap-2'><p>{studentData?.fathers_name}</p>
-              </span>
+            </span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Mother's Name:
@@ -85,17 +107,17 @@ export default function StudentProfile() {
               <p>{studentData?.blod_group}</p></span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
-          Gender:
+            Gender:
             <span className='flex gap-2'>
               <p>{studentData?.gender}</p></span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
-          Email:
+            Email:
             <span className='flex gap-2'>
               <p>{studentData?.email}</p></span>
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
-          Phone Number:
+            Phone Number:
             <span className='flex gap-2'>
               <p>{studentData?.contact}</p></span>
           </div>

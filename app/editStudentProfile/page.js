@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 export default function EditStudentInfo() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const [studentData, setStudentData] = useState(null);
 
     useEffect(() => {
@@ -16,9 +16,47 @@ export default function EditStudentInfo() {
         setStudentData(parsedUserData);
       }
     }, []);
+    const handleUpdateStudentProfile = async (data) => {
+        const dataOfStudent = {
+            first_name: data.first_name || studentData?.first_name,
+            last_name: data.last_name || studentData?.last_name,
+            fathers_name: data.fathers_name || studentData?.fathers_name,
+            mothers_name: data.mothers_name || studentData?.mothers_name,
+            address: data.address || studentData?.address,
+            blod_group: data.blod_group || studentData?.blod_group,
+            gender: data.gender || studentData?.gender,
+            email: data.email || studentData?.email,
+            contact: data.contact || studentData?.contact,
+        };
+        console.log(dataOfStudent)
+       
+            const response = await fetch(`http://localhost:5000/update/student/${studentData?._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataOfStudent),
+            });
     
+            const responseData = await response.json();
+            console.log(responseData);
+            if (responseData?.result?.modifiedCount === 1) {
+                // Update sessionStorage with the updated data
+                const updatedStudentData = {
+                    ...studentData,
+                    ...dataOfStudent
+                };
+                console.log(updatedStudentData)
+                sessionStorage.setItem('studentData', JSON.stringify(updatedStudentData));
+                toast.success('Updated profile successfully');
+                location.reload();
+            } else {
+                toast.error(responseData.error);
+           } 
+
+    }
     // const handleUpdateStudentProfile = async (data) => {
-    //     const Data = {
+    //     const dataOfStudent = {
     //         first_name: data.first_name,
     //         last_name: data.last_name,
     //         fathers_name: data.fathers_name,
@@ -27,84 +65,10 @@ export default function EditStudentInfo() {
     //         blod_group: data.blod_group,
     //         gender: data.gender,
     //         email: data.email,
-    //         contact: data.contact
-    //     }
-    //     try {
-    //         const response = await fetch(`http://localhost:5000/update/student/${studentData?._id}`, {
-    //           method: 'PUT',
-    //           headers: {
-    //             'Content-Type': 'application/json',
-    //           },
-    //           body: JSON.stringify(Data),
-    //         });
-      
-    //         const responseData  = await response.json();
-    //             console.log(responseData)
-    //         if (responseData.updateData) {
-      
-    //           const updatedStudentData = JSON.stringify(data);
-    //           sessionStorage.setItem('studentData', updatedStudentData);
-      
-    //           toast.success('Updated profile successfully');
-    //           location.reload();
-    //         } else {
-    //           toast.error(responseData.error);
-    //         }
-    //       } catch (error) {
-    //         console.error('Error updating profile:', error);
-    //         toast.error('Failed to update profile');
-    //       }
-      
+    //         contact: data.contact,
+    //     };
+    //     console.log(S)
     // }
-    const handleUpdateStudentProfile = async (data) => {
-        const Data = {
-            first_name: data.first_name,
-            last_name: data.last_name,
-            fathers_name: data.fathers_name,
-            mothers_name: data.mothers_name,
-            address: data.address,
-            blod_group: data.blod_group,
-            gender: data.gender,
-            email: data.email,
-            contact: data.contact
-        };
-        // try {
-            const response = await fetch(`http://localhost:5000/update/student/${studentData?._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(Data),
-            });
-    
-            const responseData = await response.json();
-            console.log(responseData.error);
-    
-            if (responseData?.result?.modifiedCount === 1) {
-                // Update sessionStorage with the updated data
-                const updatedStudentData = {
-                    ...studentData,
-                    ...Data
-                };
-                sessionStorage.setItem('studentData', JSON.stringify(updatedStudentData));
-    
-                toast.success('Updated profile successfully');
-                location.reload();
-            } else {
-                toast.error(responseData.error);
-            // }
-     }
-    //   catch (error) {
-    //         console.error('Error updating profile:', error);
-    //         toast.error('Failed to update profile');
-    //     }
-    }
-    
-
-    if (!studentData) {
-        return <div>Loading...</div>; // Render a loading state while studentData is being fetched
-    }
-
     return (
         <div>
             <form onSubmit={handleSubmit(handleUpdateStudentProfile)}>
