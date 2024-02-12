@@ -32,7 +32,7 @@ export default function page() {
               {studentData ? <>
                 <li><Link href='/'>STUDENTS</Link></li></> :
                 <> <li><Link href='/createAccount'>Create-Account</Link></li></>}
-
+                <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>
             </ul>
           </div>
         </div>

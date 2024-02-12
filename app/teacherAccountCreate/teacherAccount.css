@@ -1,0 +1,12 @@
+.teacher-login-back-img{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('../../public/teacher-login-back-img/9875305.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.teacher-from-blur{
+    background: transparent ;
+    backdrop-filter: blur(2px) ;
+    box-shadow: 0 0 20px rgb(13, 13, 14), inset 0 0 10px rgb(15, 17, 17);
+}
