@@ -14,7 +14,7 @@ export default function EditStudentImage() {
       setStudentData(parsedUserData);
     }
   }, []);
-  const { register, handleSubmit, formState: { errors,isDirty }} = useForm({ mode: 'onChange'});
+  const { register, handleSubmit, formState: { errors,isDirty }} = useForm()
   const imageHostKey = '29473dd4ab78ebc95009722bc0558d38';
 
   const handleAddImage = async (data) => {
@@ -44,7 +44,6 @@ export default function EditStudentImage() {
 
         const studentProfileImage = await updateResponse.json();
         console.log(studentProfileImage)
-        
         if (studentProfileImage?.result?.modifiedCount === 1) {
 
           const updatedStudentData = { ...studentData,image: imgData.data.url };

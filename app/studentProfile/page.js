@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaUserEdit } from 'react-icons/fa';
 import EditStudentInfo from '../editStudentProfile/page';
 import EditStudentImage from '../editStudentImage/page';
+import EditStudentnPass from '../navbar/editStudentPass/page';
 
 
 export default function StudentProfile() {
@@ -33,6 +34,13 @@ export default function StudentProfile() {
   const closeImageModal = () => {
     setIsImageModalOpen(false);
   };
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = React.useState(false);
+  const openPasswordModal = () => {
+    setIsPasswordModalOpen(true);
+  };
+  const closePasswordModal = () => {
+    setIsPasswordModalOpen(false);
+  };
   return (
     <div className='flex gap-10'>
       <div className='p-2 bg-gray-100 w-52'>
@@ -42,6 +50,9 @@ export default function StudentProfile() {
         </div>
         <div className="mt-3">
           <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Upload Photo</button>
+        </div>
+        <div className="mt-3">
+          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openPasswordModal}>Change pass</button>
         </div>
       </div>
       <div className='w-full p-5'>
@@ -76,8 +87,18 @@ export default function StudentProfile() {
             <button>close</button>
           </form>
         </dialog>
+        <dialog id="my_modal_2" className=" modal" open={isPasswordModalOpen} onClose={closePasswordModal}>
+          <div className="modal-box rounded-2xl">
+            <div>
+             <EditStudentnPass/>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
         <div >
-          <div className='w-full p-5 shadow-lg bg-base-200 rounded-xl'>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] h-32 rounded-full  ring ring-primary' src={studentData?.image}/>}
+          <div className='w-full p-5 shadow-lg bg-base-200 rounded-xl'>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] h-32 rounded-full  ring ring-primary' src={studentData?.image} />}
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Name:
