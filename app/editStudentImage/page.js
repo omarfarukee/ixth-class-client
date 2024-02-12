@@ -14,7 +14,7 @@ export default function EditStudentImage() {
       setStudentData(parsedUserData);
     }
   }, []);
-  const { register, handleSubmit, formState: { errors, isDirty } } = useForm();
+  const { register, handleSubmit, formState: { errors,isDirty }} = useForm({ mode: 'onChange'});
   const imageHostKey = '29473dd4ab78ebc95009722bc0558d38';
 
   const handleAddImage = async (data) => {
@@ -61,8 +61,12 @@ export default function EditStudentImage() {
   };
 
   const [hide, setHide] = useState("hidden text-blue-800 loading loading-spinner loading-md")
+
   const loaderButton = () => {
-    setHide("block loading loading-spinner text-blue-800 loading-md");
+    
+       setHide("block loading loading-spinner text-blue-800 loading-md");
+   
+    
   }
   return (
     <div>

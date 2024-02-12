@@ -55,20 +55,6 @@ export default function EditStudentInfo() {
            } 
 
     }
-    // const handleUpdateStudentProfile = async (data) => {
-    //     const dataOfStudent = {
-    //         first_name: data.first_name,
-    //         last_name: data.last_name,
-    //         fathers_name: data.fathers_name,
-    //         mothers_name: data.mothers_name,
-    //         address: data.address,
-    //         blod_group: data.blod_group,
-    //         gender: data.gender,
-    //         email: data.email,
-    //         contact: data.contact,
-    //     };
-    //     console.log(S)
-    // }
     return (
         <div>
             <form onSubmit={handleSubmit(handleUpdateStudentProfile)}>
@@ -157,7 +143,7 @@ export default function EditStudentInfo() {
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <input className="w-40 mt-4 text-white bg-gray-300 hover:text-black btn rounded-3xl" value="Update" type="submit" />
+                    <input className="w-40 mt-4 bg-gray-300 h btn rounded-3xl" value="Update" type="submit" />
                 </div>
                 
             </form>

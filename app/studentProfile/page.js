@@ -18,6 +18,7 @@ export default function StudentProfile() {
       setStudentData(parsedUserData);
     }
   }, []);
+  console.log(studentData?.image)
   const [isUserModalOpen, setIsUserModalOpen] = React.useState(false);
   const openUserModal = () => {
     setIsUserModalOpen(true);
@@ -32,7 +33,6 @@ export default function StudentProfile() {
   const closeImageModal = () => {
     setIsImageModalOpen(false);
   };
-  console.log(studentData?.image)
   return (
     <div className='flex gap-10'>
       <div className='p-2 bg-gray-100 w-52'>
@@ -41,16 +41,19 @@ export default function StudentProfile() {
           <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openUserModal}>Edit Profile</button>
         </div>
         <div className="mt-3">
-          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Edit Profile</button>
+          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Upload Photo</button>
         </div>
       </div>
       <div className='w-full p-5'>
+        <marquee direction="right">
+          hey this is running
+        </marquee>
         <dialog id="my_modal_4" className="modal" open={isUserModalOpen} onClose={closeUserModal}>
           <div className="w-11/12 max-w-5xl modal-box rounded-3xl">
             <div className="modal-content">
               <div className="flex justify-center mb-2 border-b-8 modal-header">
                 <div className=''>
-                  <FaUserEdit className="ml-5 text-6xl text-blue-900"></FaUserEdit>
+                  <FaUserEdit className="ml-5 text-6xl text-gray-900"></FaUserEdit>
                   <h1 className="font-bold">Edit Profile</h1>
                 </div>
               </div>
@@ -74,7 +77,7 @@ export default function StudentProfile() {
           </form>
         </dialog>
         <div >
-          <div className='w-full p-5 border '>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] rounded-full' src={studentData?.image}/>}
+          <div className='w-full p-5 shadow-lg bg-base-200 rounded-xl'>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] h-32 rounded-full  ring ring-primary' src={studentData?.image}/>}
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Name:
