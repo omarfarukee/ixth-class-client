@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FcEditImage } from 'react-icons/fc';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-export default function EditStudentImage() {
+export default function EditImage() {
   const [studentData, setStudentData] = useState(null);
 
   useEffect(() => {

@@ -10,3 +10,8 @@
     backdrop-filter: blur(2px) ;
     box-shadow: 0 0 20px rgb(13, 13, 14), inset 0 0 10px rgb(15, 17, 17);
 }
+.teacher-from-blur-login{
+    background: transparent ;
+    backdrop-filter: blur(15px) ;
+    box-shadow: 0 0 20px rgb(13, 13, 14), inset 0 0 10px rgb(15, 17, 17);
+}

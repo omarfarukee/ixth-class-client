@@ -3,9 +3,9 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaUserEdit } from 'react-icons/fa';
-import EditStudentInfo from '../editStudentProfile/page';
-import EditStudentImage from '../editStudentImage/page';
-import EditStudentnPass from '../navbar/editStudentPass/page';
+import EditProfileInfo from '../editProfileInfo/page';
+import EditImage from '../editImage/page';
+import EditStudentnPass from '../navbar/editPass/page';
 
 
 export default function StudentProfile() {
@@ -19,6 +19,7 @@ export default function StudentProfile() {
       setStudentData(parsedUserData);
     }
   }, []);
+  console.log(studentData?.role)
   console.log(studentData?.image)
   const [isUserModalOpen, setIsUserModalOpen] = React.useState(false);
   const openUserModal = () => {
@@ -69,7 +70,7 @@ export default function StudentProfile() {
                 </div>
               </div>
               <div className="modal-body">
-                <EditStudentInfo />
+                <EditProfileInfo />
               </div>
             </div>
           </div>
@@ -80,7 +81,7 @@ export default function StudentProfile() {
         <dialog id="my_modal_2" className=" modal" open={isImageModalOpen} onClose={closeImageModal}>
           <div className="modal-box rounded-2xl">
             <div>
-              <EditStudentImage />
+              <EditImage />
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">

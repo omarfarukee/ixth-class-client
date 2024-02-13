@@ -41,7 +41,7 @@ export default function loginStudent() {
       console.error('Error during login:', error); // Log any errors
       toast.error('An error occurred while logging in.');
     }
-  };
+  ;}
   const [types, setTypes] = useState(true)
 
   const seePass = (type) => {

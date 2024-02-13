@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-export default function EditStudentInfo() {
+export default function EditProfileInfo() {
     const { register, handleSubmit } = useForm();
     const [studentData, setStudentData] = useState(null);
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -33,6 +34,7 @@ export default function page() {
                 <li><Link href='/'>STUDENTS</Link></li></> :
                 <> <li><Link href='/createAccount'>Create-Account</Link></li></>}
                 <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>
+                <li><Link href='/loginTeacher'>Teacher's Login</Link></li>
             </ul>
           </div>
         </div>
