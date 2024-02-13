@@ -5,15 +5,17 @@ import './teacherAccount.css'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import { FaEye } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+
+
 export default function TeacherAccountCreate() {
-  
+    const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
   
-  const handleCreateStudentAccount = async (data) => {
-    const router = useRouter();
-    const studentData = {
+  const handleCreateTeacherAccount = async (data) => {
+   
+    const teacherData = {
         first_name: data.first_name,
         last_name: data.last_name,
         fathers_name: data.fathers_name,
@@ -24,24 +26,25 @@ export default function TeacherAccountCreate() {
         email: data.email,
         contact: data.contact,
         password: data.password,
-        image: ''
+        image: '',
+        role:'teacher'
     }
     try {
-        const response = await fetch('http://localhost:5000/create-students', {
+        const response = await fetch('http://localhost:5000/create-teachers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(studentData)
+            body: JSON.stringify(teacherData)
         });
 
         const responseData = await response.json();
-        console.log(responseData.student)
+        console.log(responseData.teacher)
         if (response.ok) {
             console.log('save student', responseData);
             toast.success('Student ID Created successfully, please update Your PROFILE');
-            sessionStorage.setItem('studentData', JSON.stringify(responseData.student));
-            console.log('Student data saved to sessionStorage', responseData.stdent);
+            sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
+            console.log('Student data saved to sessionStorage', responseData.teacher);
             router.push('/');
         } else {
             toast.error(responseData.error || 'An error occurred while creating the student.');
@@ -74,7 +77,7 @@ export default function TeacherAccountCreate() {
             </div>
             <div className='flex justify-center'>
                 <div className='h-full p-5 rounded-lg lg:w-5/6 teacher-from-blur'>
-                    <form className='text-white' onSubmit={handleSubmit(handleCreateStudentAccount)}>
+                    <form className='text-white' onSubmit={handleSubmit(handleCreateTeacherAccount)}>
                         <div className='flex justify-around'>
                             <div className="w-full max-w-xs mb-2 border-b-2 form-control">
                                 <input type="text" {...register("first_name", {
