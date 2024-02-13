@@ -3,16 +3,16 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaUserEdit } from 'react-icons/fa';
-import EditProfileInfo from '../editProfileInfo/page';
-import EditImage from '../editImage/page';
-import EditStudentnPass from '../navbar/editPass/page';
-
-
-export default function StudentProfile() {
+import EditProfileInfo from '../editStudentProfileInfo/page';
+import EditImage from '../editStudentImage/page';
+import EditStudentnPass from '../editStudentPass/page';
+import EditTeacherInfo from '../editTeacherInfo/page';
+import EditTeacherImage from '../editTeacherImage/page';
+import EditTeacherPass from '../editTeacherPass/page';
+export default function MyProfile() {
   const [studentData, setStudentData] = useState(null);
 
   useEffect(() => {
-    // Fetch studentData from sessionStorage
     const userData = sessionStorage.getItem('studentData');
     if (userData) {
       const parsedUserData = JSON.parse(userData);
@@ -43,22 +43,28 @@ export default function StudentProfile() {
     setIsPasswordModalOpen(false);
   };
   return (
-    <div className='flex gap-10'>
-      <div className='p-2 bg-gray-100 w-52'>
-        <h1 className='flex justify-center text-2xl'>Dash-Board</h1>
-        <div className="mt-3">
-          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openUserModal}>Edit Profile</button>
-        </div>
-        <div className="mt-3">
-          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Upload Photo</button>
-        </div>
-        <div className="mt-3">
-          <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openPasswordModal}>Change pass</button>
+    <div className='flex gap-5'>
+      <div className='p-2 bg-gray-100 w-96'>
+        {studentData?.role ? <h1 className='flex justify-center text-2xl'>Teacher's Dash-board</h1> : <h1 className='flex justify-center text-2xl'>Student's Dash-board</h1>}
+        <div className='flex justify-center'>
+          <div>
+            <div className="mt-3">
+              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openUserModal}>Edit Profile</button>
+            </div>
+            <div className="mt-3">
+              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openImageModal}>Upload Photo</button>
+            </div>
+            <div className="mt-3">
+              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openPasswordModal}>Change pass</button>
+            </div>
+          </div>
         </div>
       </div>
       <div className='w-full p-5'>
-        <marquee direction="right">
-          hey this is running
+        <marquee direction="left">
+          {studentData?.role ? <p className='font-bold text-red-500'>Dear Faculty Member,As we approach the examination period, it is imperative that we ensure the smooth conduct of assessments. We kindly request all subject teachers to prepare and submit their respective question papers by the next month.
+
+          </p> : <p className='font-bold text-red-500'>Dear Student,We hope this message finds you well. We would like to inform you that the upcoming examinations are approaching swiftly. It's crucial to begin your preparations earnestly to excel in your academic endeavors.</p>}
         </marquee>
         <dialog id="my_modal_4" className="modal" open={isUserModalOpen} onClose={closeUserModal}>
           <div className="w-11/12 max-w-5xl modal-box rounded-3xl">
@@ -70,7 +76,8 @@ export default function StudentProfile() {
                 </div>
               </div>
               <div className="modal-body">
-                <EditProfileInfo />
+                {!studentData?.role ? <EditProfileInfo />
+                  : <EditTeacherInfo />}
               </div>
             </div>
           </div>
@@ -81,7 +88,8 @@ export default function StudentProfile() {
         <dialog id="my_modal_2" className=" modal" open={isImageModalOpen} onClose={closeImageModal}>
           <div className="modal-box rounded-2xl">
             <div>
-              <EditImage />
+              {!studentData?.role ? <EditImage />
+                : <EditTeacherImage />}
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">
@@ -91,7 +99,8 @@ export default function StudentProfile() {
         <dialog id="my_modal_2" className=" modal" open={isPasswordModalOpen} onClose={closePasswordModal}>
           <div className="modal-box rounded-2xl">
             <div>
-             <EditStudentnPass/>
+              {!studentData?.role ? <EditStudentnPass />
+                : <EditTeacherPass />}
             </div>
           </div>
           <form method="dialog" className="modal-backdrop">
@@ -106,11 +115,11 @@ export default function StudentProfile() {
             <span className='flex gap-2'><p>{studentData?.first_name}</p>
               <p>{studentData?.last_name}</p></span>
           </div>
-          <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
+          {studentData?.studentCode && <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Student Code:
             <span className='flex gap-2'><p>{studentData?.studentCode}</p>
             </span>
-          </div>
+          </div>}
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
             Father's Name:
             <span className='flex gap-2'><p>{studentData?.fathers_name}</p>

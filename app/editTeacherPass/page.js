@@ -3,93 +3,88 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaEye, FaUserLock } from 'react-icons/fa'
 
-export default function EditStudentnPass() {
-        const { register, handleSubmit, getValues, formState: { errors }} = useForm()
-        const [hideCurrent, setHideCurrent] = useState(true);
-        const [hideNew, setHideNew] = useState(true);
-        const [hideConfirm, setHideConfirm] = useState(true);
-        const [studentData, setStudentData] = useState(null);
+export default function EditTeacherPass() {
+  const { register, handleSubmit, getValues, formState: { errors }} = useForm()
+  const [hideCurrent, setHideCurrent] = useState(true);
+  const [hideNew, setHideNew] = useState(true);
+  const [hideConfirm, setHideConfirm] = useState(true);
+  const [studentData, setStudentData] = useState(null);
+  useEffect(() => {
+    // Fetch studentData from sessionStorage
+    const userData = sessionStorage.getItem('studentData');
+    if (userData) {
+      const parsedUserData = JSON.parse(userData);
+      setStudentData(parsedUserData);
+    }
+  }, []);
+  const seePass = (type) => {
+    switch (type) {
+        case "current":
+            setHideCurrent(!hideCurrent);
+            break;
+        case "new":
+            setHideNew(!hideNew);
+            break;
+        case "confirm":
+            setHideConfirm(!hideConfirm);
+            break;
+        default:
+            break;
+    }
+};
+const passwordFieldType = (type) => {
+    switch (type) {
+        case "current":
+            return hideCurrent ? "password" : "text";
+        case "new":
+            return hideNew ? "password" : "text";
+        case "confirm":
+            return hideConfirm ? "password" : "text";
+        default:
+            return "password";
+    }
+};
+const handleUpdatePassword = async (data) => {
+  const newPassword = data.password;
+  const confirmNewPassword = getValues("confirmPassword");
 
-        useEffect(() => {
-          // Fetch studentData from sessionStorage
-          const userData = sessionStorage.getItem('studentData');
-          if (userData) {
-            const parsedUserData = JSON.parse(userData);
-            setStudentData(parsedUserData);
-          }
-        }, []);
-        const seePass = (type) => {
-            switch (type) {
-                case "current":
-                    setHideCurrent(!hideCurrent);
-                    break;
-                case "new":
-                    setHideNew(!hideNew);
-                    break;
-                case "confirm":
-                    setHideConfirm(!hideConfirm);
-                    break;
-                default:
-                    break;
-            }
-        };
-        const passwordFieldType = (type) => {
-            switch (type) {
-                case "current":
-                    return hideCurrent ? "password" : "text";
-                case "new":
-                    return hideNew ? "password" : "text";
-                case "confirm":
-                    return hideConfirm ? "password" : "text";
-                default:
-                    return "password";
-            }
-        };
-        const handleUpdatePassword = async (data) => {
-            const newPassword = data.password;
-            const confirmNewPassword = getValues("confirmPassword");
-    
-            if (newPassword !== confirmNewPassword) {
-                toast.error("New password and confirm password do not match");
-                return;
-            }
-    
-            const userPassData = {
-                password: newPassword,
-            };
-    
-            try {
-                const response = await fetch(`http://localhost:5000/update/student/${studentData?._id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(userPassData),
-                });
-    
-                const studentPass = await response.json();
-    
-                if (studentPass?.result?.modifiedCount === 1) {
-                    const updatedStudentData = {
-                        ...studentData,
-                        ...studentPass.updatedData
-                    };
-                    console.log(updatedStudentData)
-                    sessionStorage.setItem('studentData', JSON.stringify(updatedStudentData));
-                    toast.success('Updated password successfully');
-                    location.reload();
-                } else {
-                    toast.error(studentPass.error);
-                }
-            } catch (error) {
-                console.error('Error changing password:', error);
-                toast.error('Failed to change password');
-            }
-        };
-    
+  if (newPassword !== confirmNewPassword) {
+      toast.error("New password and confirm password do not match");
+      return;
+  }
 
+  const userPassData = {
+      password: newPassword,
+  };
 
+  try {
+      const response = await fetch(`http://localhost:5000/update/teacher/${studentData?._id}`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userPassData),
+      });
 
+      const teacherPass = await response.json();
+
+      if (teacherPass?.result?.modifiedCount === 1) {
+          const updatedTeacherData = {
+              ...studentData,
+              ...teacherPass.updatedData
+          };
+          console.log(updatedTeacherData);
+          sessionStorage.setItem('studentData', JSON.stringify(updatedTeacherData));
+          toast.success('Updated password successfully');
+          location.reload();
+      } else {
+          toast.error(teacherPass.error);
+      }
+  } catch (error) {
+      console.error('Error changing password:', error);
+      toast.error('Failed to change password');
+  }
+};
   return (
     <div>
             <div>

@@ -63,7 +63,7 @@ export default function page() {
             </div>
 
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border">
-              <li><Link href='/studentProfile'>MY-PROFILE</Link></li>
+              <li><Link href='/myProfile'>MY-PROFILE</Link></li>
               <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
 
 
