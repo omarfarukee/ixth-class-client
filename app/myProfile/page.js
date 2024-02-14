@@ -9,6 +9,7 @@ import EditStudentnPass from '../editStudentPass/page';
 import EditTeacherInfo from '../editTeacherInfo/page';
 import EditTeacherImage from '../editTeacherImage/page';
 import EditTeacherPass from '../editTeacherPass/page';
+import CreateResult from '../createResult/page';
 export default function MyProfile() {
   const [studentData, setStudentData] = useState(null);
 
@@ -57,6 +58,9 @@ export default function MyProfile() {
             <div className="mt-3">
               <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openPasswordModal}>Change pass</button>
             </div>
+            {studentData && <div className="mt-3">
+              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300'>Create Result</button>
+            </div>}
           </div>
         </div>
       </div>
@@ -66,6 +70,7 @@ export default function MyProfile() {
 
           </p> : <p className='font-bold text-red-500'>Dear Student,We hope this message finds you well. We would like to inform you that the upcoming examinations are approaching swiftly. It's crucial to begin your preparations earnestly to excel in your academic endeavors.</p>}
         </marquee>
+
         <dialog id="my_modal_4" className="modal" open={isUserModalOpen} onClose={closeUserModal}>
           <div className="w-11/12 max-w-5xl modal-box rounded-3xl">
             <div className="modal-content">
@@ -107,6 +112,7 @@ export default function MyProfile() {
             <button>close</button>
           </form>
         </dialog>
+
         <div >
           <div className='w-full p-5 shadow-lg bg-base-200 rounded-xl'>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] h-32 rounded-full  ring ring-primary' src={studentData?.image} />}
           </div>
@@ -157,7 +163,10 @@ export default function MyProfile() {
           </div>
 
         </div>
-
+        {/* ------------------------------------------------------------------- */}
+        <div>
+          <CreateResult />
+        </div>
       </div>
     </div>
   );
