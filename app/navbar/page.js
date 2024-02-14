@@ -30,11 +30,10 @@ export default function page() {
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link href='/'>HOME</Link></li>
-              {studentData ? <>
-                <li><Link href='/'>STUDENTS</Link></li></> :
-                <> <li><Link href='/createAccount'>Create-Account</Link></li></>}
-                <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>
-                <li><Link href='/loginTeacher'>Teacher's Login</Link></li>
+              <li><Link href='/getStudents'>MY-STUDENTS</Link></li> 
+              <li><Link href='/createAccount'>Create-Account</Link></li>
+              <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>
+              <li><Link href='/loginTeacher'>Teacher's Login</Link></li>
             </ul>
           </div>
         </div>
@@ -44,37 +43,35 @@ export default function page() {
         <div className="navbar-end">
 
 
-     { studentData ? 
+          {studentData ?
 
-          <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-            
-            <div tabIndex={0} role="button" className="m-1">
-             
-             {!studentData?.image ? <> <FaUserCircle className='text-3xl'></FaUserCircle></>
-                
-:
-                <div className="avatar online">
-                  <div className="rounded-full w-9">
-                    <img src={studentData?.image} />
+            <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+
+              <div tabIndex={0} role="button" className="m-1">
+
+                {!studentData?.image ? <> <FaUserCircle className='text-3xl'></FaUserCircle></>
+
+                  :
+                  <div className="avatar online">
+                    <div className="rounded-full w-9">
+                      <img src={studentData?.image} />
+                    </div>
                   </div>
-                </div>
 
-     }
+                }
+              </div>
+
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border">
+                <li><Link href='/myProfile'>MY-PROFILE</Link></li>
+                <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
+              </ul>
             </div>
 
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border">
-              <li><Link href='/myProfile'>MY-PROFILE</Link></li>
-              <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
-
-
-            </ul>
-          </div>
-
-:
-          <Link href='/login-student'><button className='flex items-center gap-2 p-2 font-bold rounded-sm bg-base-200 hover:bg-base-300'>
+            :
+            <Link href='/login-student'><button className='flex items-center gap-2 p-2 font-bold rounded-sm bg-base-200 hover:bg-base-300'>
               LOG-IN <IoMdLogIn className='text-2xl' />
             </button></Link>
-}
+          }
         </div>
       </div>
     </div>
