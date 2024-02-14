@@ -20,8 +20,6 @@ export default function MyProfile() {
       setStudentData(parsedUserData);
     }
   }, []);
-  console.log(studentData?.role)
-  console.log(studentData?.image)
   const [isUserModalOpen, setIsUserModalOpen] = React.useState(false);
   const openUserModal = () => {
     setIsUserModalOpen(true);
