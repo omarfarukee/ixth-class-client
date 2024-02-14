@@ -5,13 +5,13 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 export default function CreateResult() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit,  reset, formState: { errors } } = useForm();
     const [allStudentsInfo, setAllStudentsInfo] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const result = await getAllStudent();
-                setAllStudentsInfo(result.data); // Assuming data is the key containing student array
+                setAllStudentsInfo(result.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -23,6 +23,7 @@ export default function CreateResult() {
     const handleAddResult = async (data) => {
         const studentsMarks = {
             physics: data.physics,
+            name:data.name,
             chemistry: data.chemistry,
             biology: data.biology,
             math: data.math,
@@ -42,6 +43,7 @@ export default function CreateResult() {
             const responseData = await response.json();
             if (responseData.success === true) {
                 toast.success(responseData.message)
+                reset();
             } 
             else{
                 toast.error(responseData.message)
@@ -75,6 +77,13 @@ export default function CreateResult() {
                             ))}
                         </select>
 
+                    </div>
+                    <div className="w-full max-w-xs form-control">
+                        <label className="label"> <span className="label-text">Enter Student name</span></label>
+                        <input type="text" {...register("name", {
+                            required: "Required"
+                        })} className="w-full max-w-xs input input-bordered rounded-xl" placeholder="sudent name..." />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div className="w-full max-w-xs form-control">
                         <label className="label"> <span className="label-text">Enter physics marks</span></label>
