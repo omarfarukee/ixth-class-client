@@ -40,7 +40,7 @@ export default function ResultSheet() {
                     location.reload()
                 }
                 else{
-                    toas.error('result is not deleted')
+                    toast.error('result is not deleted')
                 }
             })
         }
