@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import getAllResults from '../lib/getStudentResults';
 import { FaEdit } from 'react-icons/fa';
-import Link from 'next/link';
-
+import Link from "next/link";
+import EditResult from './[id]/page';
 export default function ResultSheet() {
     const [allResults, setAllResults] = useState([]);
 
@@ -21,8 +21,8 @@ export default function ResultSheet() {
     }, []);
 
     return (
-        <div className='p-10'>
-            <div className='flex justify-center mb-10 text-2xl border-b-2'>
+        <div className='p-5'>
+            <div className='flex justify-center text-2xl border-b-2'>
                 <h1>ResultSheet</h1>
             </div>
             <div className="overflow-x-auto">
@@ -58,7 +58,7 @@ export default function ResultSheet() {
                                     <td><span className='font-bold'>{result?.totalMarks}</span>/700</td>
                                     <td><span className='font-bold'>{result?.gpa}</span>/5.0</td>
                                     <td><span className='font-bold'>{result?.grade}</span></td>
-                                    <td><Link href={`/result/${result?._id}`}><button ><FaEdit></FaEdit></button></Link></td>
+                                    <td><Link href={`/resultSheet/${result?._id}`}><button><FaEdit></FaEdit></button></Link></td>
                                 </tr>
                             )
                         }
