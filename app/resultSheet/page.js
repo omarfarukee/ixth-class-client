@@ -85,7 +85,7 @@ export default function ResultSheet() {
                                     <td><span className='font-bold'>{result?.totalMarks}</span>/700</td>
                                     <td><span className='font-bold'>{result?.gpa}</span>/5.0</td>
                                     <td><span className='font-bold'>{result?.grade}</span></td>
-                                    <td><Link href={`/resultSheet/${result?._id}`}><button><FaEdit className='text-lg'></FaEdit></button></Link></td>
+                                    <td><Link href={`/resultSheet/${result?._id}`}><button className='hover:text-blue-400'><FaEdit className='text-lg'></FaEdit></button></Link></td>
                                     <td><button onClick={() => handleDelete(result?._id)}><MdDelete className='text-lg hover:text-red-500' /></button></td>
                                 </tr>
                             )
