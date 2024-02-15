@@ -22,14 +22,14 @@ export default function CreateResult() {
 
     const handleAddResult = async (data) => {
         const studentsMarks = {
-            physics: data.physics,
-            name:data.name,
-            chemistry: data.chemistry,
-            biology: data.biology,
-            math: data.math,
-            bangla: data.bangla,
-            english: data.english,
-            history: data.history,
+            physics: parseInt(data.physics),
+            name: data.name,
+            chemistry: parseInt(data.chemistry),
+            biology: parseInt(data.biology),
+            math: parseInt(data.math),
+            bangla: parseInt(data.bangla),
+            english: parseInt(data.english),
+            history: parseInt(data.history),
             studentCode: data.studentCode || '001'
         }
         try {
@@ -44,6 +44,7 @@ export default function CreateResult() {
             if (responseData.success === true) {
                 toast.success(responseData.message)
                 reset();
+                location.reload();
             } 
             else{
                 toast.error(responseData.message)
@@ -58,7 +59,8 @@ export default function CreateResult() {
     const sortedStudents = allStudentsInfo.sort((a, b) => a.studentCode - b.studentCode);
 
     return (
-        <div className='p-5 mt-5 bg-base-200 rounded-xl'>
+        <div className='flex justify-center'>
+        <div className='w-3/4 p-5 mt-5 bg-base-200 rounded-xl'>
             <div className='flex justify-center mt-5 mb-5 '>
                 <h1 className='text-2xl'>Create Result</h1>
             </div>
@@ -149,6 +151,7 @@ export default function CreateResult() {
                 </div>
 
             </form>
+        </div>
         </div>
     )
 }

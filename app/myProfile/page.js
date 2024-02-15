@@ -9,8 +9,8 @@ import EditStudentnPass from '../editStudentPass/page';
 import EditTeacherInfo from '../editTeacherInfo/page';
 import EditTeacherImage from '../editTeacherImage/page';
 import EditTeacherPass from '../editTeacherPass/page';
-import CreateResult from '../createResult/page';
-import ResultSheet from '../resultSheet/page';
+
+
 export default function MyProfile() {
   const [studentData, setStudentData] = useState(null);
 
@@ -43,25 +43,6 @@ export default function MyProfile() {
     setIsPasswordModalOpen(false);
   };
   
-
-  const [profilePage, setProfilePage] = useState('blcok')
-  const [resultPage, setResultPage] = useState('hidden')
-  const [sheet, setSheet] = useState('hidden')
-  const profiles = () => {
-      setResultPage('hidden')
-      setProfilePage('blcok')
-      setSheet('hidden')
-  }
-  const results = () => {
-    setResultPage('block')
-    setProfilePage('hidden')
-    setSheet('hidden')
-  }
-  const sheets = () => {
-    setResultPage('hidden')
-    setProfilePage('hidden')
-    setSheet('block')
-  }
   return (
     <div className='flex gap-5'>
       <div className='h-screen p-2 bg-gray-100 w-96'>
@@ -77,15 +58,6 @@ export default function MyProfile() {
             <div className="mt-3">
               <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={openPasswordModal}>Change pass</button>
             </div>
-            <div className="mt-3">
-              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={()=>profiles()}>Profile info</button>
-            </div>
-            {studentData?.role && <div className="mt-3">
-              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={() => results()}>Create Result</button>
-            </div>}
-            {studentData?.role && <div className="mt-3">
-              <button className='w-48 p-2 bg-gray-200 border rounded-lg hover:bg-gray-300' onClick={() => sheets()}>Result Sheet</button>
-            </div>}
           </div>
         </div>
       </div>
@@ -138,7 +110,7 @@ export default function MyProfile() {
           </form>
         </dialog>
 
-        <div className={profilePage}>
+        <div>
           <div className='w-full p-5 shadow-lg bg-base-200 rounded-xl'>{studentData?.image === '' ? <p className='text-9xl'><FaUserCircle></FaUserCircle></p> : <img alt='' className='w-[128px] h-32 rounded-full  ring ring-primary' src={studentData?.image} />}
           </div>
           <div className='flex gap-2 p-3 mt-2 font-bold border rounded-lg bg-slate-300'>
@@ -187,13 +159,6 @@ export default function MyProfile() {
               <p>{studentData?.contact}</p></span>
           </div>
 
-        </div>
-        {/* ------------------------------------------------------------------- */}
-        <div className={resultPage}>
-          <CreateResult />
-        </div>
-        <div className={sheet}>
-          <ResultSheet/>
         </div>
       </div>
     </div>
