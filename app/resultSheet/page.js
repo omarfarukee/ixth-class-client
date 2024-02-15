@@ -3,15 +3,19 @@ import React, { useEffect, useState } from 'react'
 import getAllResults from '../lib/getStudentResults';
 import { FaEdit } from 'react-icons/fa';
 import Link from "next/link";
-import EditResult from './[id]/page';
+import { MdDelete } from "react-icons/md";
+import toast from 'react-hot-toast';
 export default function ResultSheet() {
     const [allResults, setAllResults] = useState([]);
-
+   
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const result = await getAllResults();
-                setAllResults(result.data);
+                const sortedResults = result.data.sort((a, b) => {
+                    return a.studentCode.localeCompare(b.studentCode);
+                });
+                setAllResults(sortedResults);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -19,7 +23,28 @@ export default function ResultSheet() {
 
         fetchData();
     }, []);
-
+    const [resultDelete, setResultDelete] = useState([])
+    const handleDelete = (id) =>{
+        const proceed = window.confirm('Are you sure, want to delete this student?')
+        if(proceed){
+            fetch( `http://localhost:5000/result/delete/${id}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.deletedCount > 0) {
+                    toast.success('result deleted')
+                    const remaining = resultDelete.filter(item => item._id !== id)
+                    setResultDelete(remaining)
+                    location.reload()
+                }
+                else{
+                    toas.error('result is not deleted')
+                }
+            })
+        }
+}
     return (
         <div className='p-5'>
             <div className='flex justify-center text-2xl border-b-2'>
@@ -37,6 +62,7 @@ export default function ResultSheet() {
                             <th>biology</th>
                             <th>Math</th>
                             <th>Bangla</th>
+                            <th>english</th>
                             <th>history</th>
                             <th>Total Marks</th>
                             <th>GPA</th>
@@ -54,11 +80,13 @@ export default function ResultSheet() {
                                     <td><span className='font-bold'>{result?.biology}</span>/100</td>
                                     <td><span className='font-bold'>{result?.math}</span>/100</td>
                                     <td><span className='font-bold'>{result?.bangla}</span>/100</td>
+                                    <td><span className='font-bold'>{result?.english}</span>/100</td>
                                     <td><span className='font-bold'>{result?.history}</span>/100</td>
                                     <td><span className='font-bold'>{result?.totalMarks}</span>/700</td>
                                     <td><span className='font-bold'>{result?.gpa}</span>/5.0</td>
                                     <td><span className='font-bold'>{result?.grade}</span></td>
-                                    <td><Link href={`/resultSheet/${result?._id}`}><button><FaEdit></FaEdit></button></Link></td>
+                                    <td><Link href={`/resultSheet/${result?._id}`}><button><FaEdit className='text-lg'></FaEdit></button></Link></td>
+                                    <td><button onClick={() => handleDelete(result?._id)}><MdDelete className='text-lg hover:text-red-500' /></button></td>
                                 </tr>
                             )
                         }

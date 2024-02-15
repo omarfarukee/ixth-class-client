@@ -1,12 +1,14 @@
+'use client'
 /* eslint-disable @next/next/no-async-client-component */
 
-'use client'
 import getSingleResult from '@/app/lib/getSingleResult'
 import React from 'react'
 import { useForm } from 'react-hook-form';
-
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation'
 
 export default async function EditResult({params}) {
+    const router = useRouter()
     const { register, handleSubmit } = useForm();
     const {id}= params
     const result =await getSingleResult(id)
@@ -14,7 +16,7 @@ export default async function EditResult({params}) {
     const handleUpdateResult = async (data) => {
 
         const marks = {
-            name: parseInt(data.name) || result?.name,
+            name: data.name || result?.name,
             physics:  parseInt(data.physics)|| result?.physics,
             chemistry: parseInt(data.chemistry) || result?.chemistry ,
             biology: parseInt(data.biology) || result?.biology,
@@ -22,6 +24,26 @@ export default async function EditResult({params}) {
             bangla:  parseInt(data.bangla) || result?.bangla,
             english:  parseInt(data.english) || result?.english,
             history:  parseInt(data.history)|| result?.history
+        }
+
+        
+        const response = await fetch(`http://localhost:5000/updateResult/${result?._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(marks),
+        });
+
+        const responseData = await response.json();
+        console.log(responseData);
+
+        if(responseData.success === true) {
+            toast.success(responseData.message);
+            router.push('/resultSheet')
+        }
+        else{
+            toast.error(responseData.message)
         }
     }
   return (
