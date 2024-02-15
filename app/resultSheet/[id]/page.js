@@ -23,7 +23,6 @@ export default async function EditResult({params}) {
             english:  parseInt(data.english) || result?.english,
             history:  parseInt(data.history)|| result?.history
         }
-console.log(marks)
     }
   return (
     <div>
