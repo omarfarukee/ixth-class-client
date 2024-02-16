@@ -34,6 +34,7 @@ const router = useRouter();
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link href='/'>Home</Link></li>
               <li><Link href='/getStudents'>Student profile</Link></li> 
+              <li><Link href='/finalResult'>Final Result</Link></li>
               {!studentData && <li><Link href='/createAccount'>Create Student Account</Link></li>}
              {studentData?.role && <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>}
              {!studentData && <li><Link href='/loginTeacher'>Teacher's Login</Link></li>}
@@ -66,6 +67,7 @@ const router = useRouter();
 
               <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border">
                 <li><Link href='/myProfile'>MY-PROFILE</Link></li>
+                {studentData?.studentCode &&<li><Link href='/viewResult'>View Result</Link></li>}
                 {studentData?.role && <li><Link href='/createResult'>Create Result</Link></li>}
                 {studentData?.role && <li><Link href='/resultSheet'>Result Sheet</Link></li>}
                 {studentData?.role && <li><Link href='/finalResult'>Final Result</Link></li>}
