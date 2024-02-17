@@ -2,6 +2,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import getAllResults from '../lib/getStudentResults';
+import { IoSettingsOutline } from "react-icons/io5";
 
 export default function FinalResultSheet() {
     const [allResults, setAllResults] = useState([]);
@@ -19,8 +20,6 @@ export default function FinalResultSheet() {
                         return b.totalMarks - a.totalMarks
                     }
                 });
-
-                // Count students with GPA of 0 and GPA higher than 0
                 let zeroCount = 0;
                 let higherThanZeroCount = 0;
                 sortedResults.forEach(result => {
@@ -45,11 +44,16 @@ export default function FinalResultSheet() {
     const total = (gpaZeroCount + gpaHigherThanZeroCount)
     return (
         <div className='p-5'>
+            {allResults ? 
             <marquee direction="left" className="font-bold text-blue-700">
                 Congratulations to those who did well in the exam. But those who didn't do well won't be so upset.Because one exam does not decide your future.Work hard with honesty and one day you will see success. 
+            </marquee>:
+            <marquee  direction="left" className="font-bold text-blue-700">
+                s The Result will be published soon ... 
             </marquee>
+            }
             <div className='flex justify-center text-2xl border-b-2'>
-                <h1>ResultSheet</h1>
+                <h1>Result-Sheet</h1>
             </div>
             <div>
             <div className='flex gap-10 mt-3 mb-5 border-b-2'>
@@ -59,6 +63,7 @@ export default function FinalResultSheet() {
                 
             </div>
             </div>
+            { allResults? 
             <div className="overflow-x-auto">
                 <table className="table ">
                     <thead>
@@ -103,15 +108,16 @@ export default function FinalResultSheet() {
                         ))}
                     </tbody>
                 </table>
-            </div>
-            
+            </div>:<p className='flex items-center justify-center mt-10 text-3xl font-bold'><IoSettingsOutline className="font-bold text-red-700 text-7xl animate-spin" />
+                working on progress<span className='animate-pulse'>........</span></p>
+            }
         </div>
     );
 }
 
 function getBackgroundColor(result, index) {
     if (result?.gpa === 0) {
-        return 'bg-red-400'; // Set background to red for GPA of 0
+        return 'bg-red-400';
     } else {
         switch (index) {
             case 0:
