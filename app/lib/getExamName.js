@@ -1,4 +1,4 @@
-export default async function getAllResults() {
+export default async function getExamName() {
     const result =await fetch('http://localhost:5000/examName',{
         
         next: {

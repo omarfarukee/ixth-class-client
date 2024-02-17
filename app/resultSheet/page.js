@@ -5,6 +5,7 @@ import { FaEdit } from 'react-icons/fa';
 import Link from "next/link";
 import { MdDelete } from "react-icons/md";
 import toast from 'react-hot-toast';
+import NameOfExamGet from '../nameOfExam/page';
 export default function ResultSheet() {
     const [allResults, setAllResults] = useState([]);
    
@@ -47,8 +48,11 @@ export default function ResultSheet() {
 }
     return (
         <div className='p-5'>
-            <div className='flex justify-center text-2xl border-b-2'>
+            <div className='flex justify-center text-2xl '>
                 <h1>ResultSheet</h1>
+            </div>
+            <div className='border-b-2'>
+                <NameOfExamGet/>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
