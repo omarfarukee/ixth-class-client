@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 export default function ExamNameSet() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -14,7 +13,13 @@ export default function ExamNameSet() {
         }
        console.log(exam)
     }
-
+    // -------------------=========================================
+                                                                    // =====
+                                                                            // ======
+    // this page is not used for this porject,                                       =====
+                                                                            // ======
+                                                                    // =====
+    // ===============================================================
     return (
       <div className='p-5 bg-base-200 rounded-xl'>
       <div className='flex justify-center mt-5'>

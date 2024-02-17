@@ -9,8 +9,6 @@ export default function UpdateExamName({params}) {
     const {id} = params;
     console.log(id)
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-
     const handleUpdateExamName =async (data) => {
         const exam = {
             exam_name: data.exam_name,

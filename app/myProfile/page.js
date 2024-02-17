@@ -9,6 +9,7 @@ import EditStudentnPass from '../editStudentPass/page';
 import EditTeacherInfo from '../editTeacherInfo/page';
 import EditTeacherImage from '../editTeacherImage/page';
 import EditTeacherPass from '../editTeacherPass/page';
+import PrivateRoute from '../Components/page';
 
 
 export default function MyProfile() {
@@ -44,6 +45,7 @@ export default function MyProfile() {
   };
   
   return (
+    <PrivateRoute>
     <div className='flex gap-5'>
       <div className='h-screen p-2 bg-gray-100 w-96'>
         {studentData?.role ? <h1 className='flex justify-center text-2xl'>Teacher's Dash-board</h1> : <h1 className='flex justify-center text-2xl'>Student's Dash-board</h1>}
@@ -161,7 +163,7 @@ export default function MyProfile() {
 
         </div>
       </div>
-    </div>
+    </div></PrivateRoute>
   );
 }
 

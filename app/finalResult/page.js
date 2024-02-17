@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import getAllResults from '../lib/getStudentResults';
 import { IoSettingsOutline } from "react-icons/io5";
+import NameOfExamGet from '../nameOfExam/page';
 
 export default function FinalResultSheet() {
     const [allResults, setAllResults] = useState([]);
@@ -56,11 +57,14 @@ export default function FinalResultSheet() {
                 <h1>Result-Sheet</h1>
             </div>
             <div>
-            <div className='flex gap-10 mt-3 mb-5 border-b-2'>
+         <div className='flex justify-center border-b-2'>
+            <div className='flex gap-10 mt-3 mb-2'>
+                <NameOfExamGet/>
                 <p className='font-bold text-blue-700'>Total Student : {total}</p>
                 <p className='font-bold text-green-600'>The number of Student Pass: {gpaHigherThanZeroCount}</p>
                 <p className='font-bold text-red-500'>The number of Student Fail: {gpaZeroCount}</p>
-                
+              
+            </div>
             </div>
             </div>
             { allResults? 

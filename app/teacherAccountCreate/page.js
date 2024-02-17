@@ -42,7 +42,7 @@ export default function TeacherAccountCreate() {
         console.log(responseData.teacher)
         if (response.ok) {
             console.log('save student', responseData);
-            toast.success('Student ID Created successfully, please update Your PROFILE');
+            toast.success('teachers account Created successfully, please update Your PROFILE');
             sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
             console.log('Student data saved to sessionStorage', responseData.teacher);
             router.push('/');

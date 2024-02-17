@@ -63,11 +63,11 @@ export default function CreateResult() {
     return (
         <div>
             <marquee direction="left" className="w-full mt-5 font-bold text-red-700">
-                [Note]:Dear Teacher's an exam requires only an exam name and a date, not a second time.If you have submitted name and date once, do not do it again.If you do it wrongly then check the result sheet and correct it
+                [Note]:Deat teacher's Update exam name and date as per exam name and exam start date
             </marquee>
-            <div className='flex justify-between gap-5 p-5'>
+            <div className='flex justify-center gap-5 p-5'>
 
-                <div>
+                <div className='hidden'>
                     <ExamNameSet />
                 </div>
                 <div className='w-3/4 p-5 bg-base-200 rounded-xl'>
@@ -132,13 +132,6 @@ export default function CreateResult() {
                                     required: "Required"
                                 })} className="w-full max-w-xs input input-bordered rounded-xl" placeholder="bangla marks..." />
                                 {errors.bangla && <p className='text-red-500'>{errors.bangla.message}</p>}
-                            </div>
-                            <div className="w-full max-w-xs form-control">
-                                <label className="label"> <span className="label-text">Enter english marks</span></label>
-                                <input type="number" {...register("english", {
-                                    required: "Required"
-                                })} className="w-full max-w-xs input input-bordered rounded-xl" placeholder="english marks..." />
-                                {errors.english && <p className='text-red-500'>{errors.english.message}</p>}
                             </div>
                             <div className="w-full max-w-xs form-control">
                                 <label className="label"> <span className="label-text">Enter english marks</span></label>

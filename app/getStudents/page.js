@@ -71,7 +71,7 @@ export default async function AllStudentsGet() {
                 </p>}</figure>
                 <div className="items-center card-body">
                   <Link href={`/getStudents/${student?._id}`}> <h2 className="card-title">{student?.first_name} {student?.last_name}</h2></Link>
-
+                  <p>Student Code : {student?.studentCode}</p>
                  {studentData?.role && <button className='text-2xl hover:text-red-500' onClick={() => handleDelete(student?._id)}><MdAutoDelete  /> </button>}
 
                 </div>

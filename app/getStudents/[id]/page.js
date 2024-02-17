@@ -11,7 +11,7 @@ export default async function StudentDetails({ params }) {
     return (
         <div className='p-5'>
             <div >
-                <div className='flex justify-center w-full p-5 shadow-lg bg-base-200 rounded-xl'>{getStudentData?.image === '' ? <p className='text-[240px]'><FaUserCircle></FaUserCircle></p> : <img alt='' className='rounded-full w-60 h-60 ring ring-primary' src={getStudentData?.image} />}
+                <div className='flex justify-center w-full p-5 shadow-lg bg-base-200 rounded-xl'>{getStudentData?.image === ''? <p className='text-[240px]'><FaUserCircle></FaUserCircle></p> : <img alt='' className='rounded-full w-60 h-60 ring ring-primary' src={getStudentData?.image} />}
                 </div>
                 <div className='mb-10 f'>
                     <div className='grid grid-cols-3 gap-3'>

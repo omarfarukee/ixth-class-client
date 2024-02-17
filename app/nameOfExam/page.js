@@ -8,7 +8,6 @@ export default function NameOfExamGet() {
     const [studentData, setStudentData] = useState(null);
 
     useEffect(() => {
-        // Fetch studentData from sessionStorage
         const userData = sessionStorage.getItem('studentData');
         if (userData) {
             const parsedUserData = JSON.parse(userData);
@@ -36,9 +35,9 @@ export default function NameOfExamGet() {
         <div key={name?._id} className='flex justify-between'>
             <div className='flex gap-10'>
                 <p>Exam : <span className='font-bold'>{name?.exam_name}</span></p>
-                <p>Exam Start Date: <span className='font-bold'>{name?.date}</span></p>
+                <p>Exam Started Date: <span className='font-bold'>{name?.date}</span></p>
              </div>
-               {studentData?.role && <Link href={`/nameOfExam/${name?._id}`}><button className='flex items-center gap-2'> Edit<FaEdit className='text-2xl'></FaEdit></button></Link> }
+               {studentData?.role && <Link href={`/nameOfExam/${name?._id}`}><button className='flex items-center gap-2 pl-1 pr-1 ml-1 rounded-lg bg-base-200'> Edit<FaEdit className='text-lg'></FaEdit></button></Link> }
         </div>)
       }
     </div>

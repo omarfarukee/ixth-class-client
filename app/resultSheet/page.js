@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client"
 import React, { useEffect, useState } from 'react'
 import getAllResults from '../lib/getStudentResults';
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { MdDelete } from "react-icons/md";
 import toast from 'react-hot-toast';
 import NameOfExamGet from '../nameOfExam/page';
+import { IoSettingsOutline } from "react-icons/io5";
 export default function ResultSheet() {
     const [allResults, setAllResults] = useState([]);
    
@@ -48,12 +50,17 @@ export default function ResultSheet() {
 }
     return (
         <div className='p-5'>
+            <marquee direction="left" className="w-full font-bold text-red-700">
+                [Note]:Deat teacher's Update exam name and date as per exam name and exam started date
+            </marquee>
             <div className='flex justify-center text-2xl '>
                 <h1>ResultSheet</h1>
             </div>
             <div className='border-b-2'>
                 <NameOfExamGet/>
             </div>
+            { !allResults ? <p className='flex items-center justify-center mt-10 text-3xl font-bold'><IoSettingsOutline className="font-bold text-red-700 text-7xl animate-spin" />Result do not upload yet...<span className='animate-pulse'>........</span></p>:<></>}
+
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
@@ -98,7 +105,9 @@ export default function ResultSheet() {
                     </tbody>
                 </table>
 
+             
             </div>
+         
         </div>
     )
 }
