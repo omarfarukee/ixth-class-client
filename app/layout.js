@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from '@/app/navbar/page'
+import Footer from "./footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
         <Toaster/>
         <Navbar></Navbar>
        <div className='mt-20'>{children}</div> 
-
+        <Footer/>
       </body>
     </html>
   );
