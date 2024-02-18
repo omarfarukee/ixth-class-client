@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Toaster/>
         <Navbar></Navbar>
-        {children}
+       <div className='mt-20'>{children}</div> 
 
       </body>
     </html>

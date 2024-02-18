@@ -5,6 +5,7 @@ import getAllStudent from '../lib/getAllStudents'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import ExamNameSet from '../examNameSet/page';
+import PrivateRoute from '../Components/page';
 export default function CreateResult() {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -61,6 +62,7 @@ export default function CreateResult() {
     const sortedStudents = allStudentsInfo.sort((a, b) => a.studentCode - b.studentCode);
 
     return (
+        <PrivateRoute>
         <div>
             <marquee direction="left" className="w-full mt-5 font-bold text-red-700">
                 [Note]:Deat teacher's Update exam name and date as per exam name and exam start date
@@ -158,5 +160,6 @@ export default function CreateResult() {
 
             </div>
         </div>
+        </PrivateRoute>
     )
 }

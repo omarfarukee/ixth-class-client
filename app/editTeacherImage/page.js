@@ -15,7 +15,7 @@ export default function EditTeacherImage() {
       }
     }, []);
 
-    const { register, handleSubmit, formState: { errors,isDirty }} = useForm()
+    const { register, handleSubmit, formState: { errors, isDirty }} = useForm()
     const imageHostKey = '29473dd4ab78ebc95009722bc0558d38';
 
     const handleAddImage = async (data) => {
@@ -90,7 +90,7 @@ export default function EditTeacherImage() {
           <div className="flex justify-center mt-3 lg:flex-none lg:mt-9 rounded-3xl">
             <div className='flex'>
               <input
-                className="text-white bg-blue-600 hover:text-black btn rounded-3xl"
+                className="text-white bg-base-300 hover:text-black btn rounded-3xl"
                 value="Upload"
                 type="submit"
                 disabled={!isDirty}

@@ -10,10 +10,9 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useStudentData } from '../Hooks/getStudentData';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import logos from '../../public/logo/logo.png'
 export default function page() {
 const router = useRouter();
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const studentData = useStudentData();
   const handleLogout = () => {
     sessionStorage.removeItem('studentData')
@@ -25,11 +24,11 @@ const router = useRouter();
 
   return (
     <div>
-      <div className="shadow-md navbar bg-base-100">
+      <div className="fixed top-0 z-50 w-full shadow-md navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown dropdown-hover">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link href='/'>Home</Link></li>
@@ -42,11 +41,9 @@ const router = useRouter();
           </div>
         </div>
         <div className="navbar-center">
-          <a className="text-xl btn btn-ghost">IX-TH CLASS</a>
+        <Link href='/'> <img className='rounded-lg'  src='https://scontent.fdac5-1.fna.fbcdn.net/v/t1.15752-9/428425252_423680740096164_4514252536291792824_n.png?_nc_cat=110&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=ii0A0dVD90oAX_QU5cS&_nc_ht=scontent.fdac5-1.fna&oh=03_AdTEZOgnInKmo-h9asQssNzVfEKdYzPpQZn-z99t_EEdTQ&oe=65F91132'/></Link>
         </div>
         <div className="navbar-end">
-
-
           {studentData ?
 
             <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
@@ -76,7 +73,7 @@ const router = useRouter();
             </div>
 
             :
-            <Link href='/login-student'><button className='flex items-center gap-2 p-2 font-bold rounded-sm bg-base-200 hover:bg-base-300'>
+            <Link href='/login-student'><button className='flex items-center gap-2 p-2 font-bold rounded-sm btn btn-ghost bg-base-300'>
               LOG-IN <IoMdLogIn className='text-2xl' />
             </button></Link>
           }

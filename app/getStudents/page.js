@@ -26,7 +26,10 @@ export default async function AllStudentsGet() {
     const fetchData = async () => {
       try {
         const result = await getAllStudent();
-        setAllStudents(result.data);
+        const sortedResults = result.data.sort((a, b) => {
+          return a.studentCode.localeCompare(b.studentCode);
+      });
+        setAllStudents(sortedResults);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -59,8 +62,8 @@ export default async function AllStudentsGet() {
 }
   return (
     <div>
-      <div className='flex justify-center mt-10 mb-5'>
-        <p className='text-2xl'> XI-Students</p>
+      <div className='flex justify-center mt-20 mb-5'>
+        <p className='text-2xl mt-10'> IX-Students</p>
       </div>
       <div className='flex justify-center p-5'>
         <div className='grid grid-cols-4 gap-3'>

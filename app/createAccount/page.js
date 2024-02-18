@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import React, { useState } from 'react'
@@ -102,7 +103,7 @@ export default function CreateAccount() {
                             <div className="w-full max-w-xs mb-2 border-b-2 form-control ">
                                 <input type="text" {...register("mothers_name", {
                                     required: "Mother's Name is Required !"
-                                })} className="w-full max-w-xs mb-2 bg-transparent rounded-lg input " placeholder="First name..." />
+                                })} className="w-full max-w-xs mb-2 bg-transparent rounded-lg input " placeholder="Mother's name..." />
                                 {errors.mothers_name && <small className='ml-2 text-red-500 '>{errors.mothers_name?.message}</small>}
                             </div>
                         </div>
@@ -158,6 +159,9 @@ export default function CreateAccount() {
                         </div>
                         <div className='flex justify-center'>
                             <small className="mt-2 font-black ">Al-ready created Account? <Link href='/login-student' className='font-bold text-green-500'>Please Log-in</Link></small>
+                        </div>
+                        <div className='flex justify-center'>
+                            <small className="mt-2 font-black ">Are you Teacher? <Link href='/loginTeacher' className='font-bold text-green-500'>Teacher's Log-in</Link></small>
                         </div>
                     </form>
                 </div>

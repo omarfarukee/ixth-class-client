@@ -91,7 +91,7 @@ const handleUpdatePassword = async (data) => {
                 <div>
                     <div className="flex justify-center mb-10 border-b-8">
                         <div className=''>
-                            <FaUserLock className="ml-10 text-6xl text-blue-700"> </FaUserLock>
+                            <FaUserLock className="ml-10 text-6xl"> </FaUserLock>
                             <h1 className="font-bold">Change Password</h1>
                         </div>
                     </div>
@@ -150,7 +150,7 @@ const handleUpdatePassword = async (data) => {
                             </div>
                         </div>
                         <div className="mt-5 ml-28">
-                            <input className="text-white bg-blue-600 hover:text-black btn rounded-3xl" value="Update" type="submit" />
+                            <input className=" bg-base-300 hover:text-black btn rounded-3xl" value="Update" type="submit" />
                         </div>
                     </form>
                 </div>

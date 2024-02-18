@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
@@ -41,7 +42,8 @@ export default function loginStudent() {
       console.error('Error during login:', error); // Log any errors
       toast.error('An error occurred while logging in.');
     }
-  ;}
+    ;
+  }
   const [types, setTypes] = useState(true)
 
   const seePass = (type) => {
@@ -86,6 +88,9 @@ export default function loginStudent() {
           </form>
           <div className='flex justify-center'>
             <small className="mt-2 font-black text-white">New Stdent ? <Link href='/createAccount' className='font-bold text-green-500'>Create Account</Link></small>
+          </div>
+          <div className='flex justify-center'>
+            <small className="mt-2 font-bold text-white">Are you Teacher? <Link href='/loginTeacher' className='font-bold text-green-500'>Teacher's Log-in</Link></small>
           </div>
         </div>
       </div>

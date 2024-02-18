@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import useAuth from '../Hooks/useAuth';
-
+import { IoIosSettings } from "react-icons/io";
 
 const PrivateRoute = ({ children }) => {
   const router = useRouter();
@@ -15,7 +15,9 @@ const PrivateRoute = ({ children }) => {
   }, [isAuthenticated, loading, router]);
 
   if (loading) {
-    return <div>Loading...</div>; // Add a loading indicator if needed
+    return  <div className='flex items-center justify-center mt-5'>
+    <IoIosSettings  className='text-gray-700 text-8xl animate-spin' />
+    </div>; // Add a loading indicator if needed
   }
 
   return isAuthenticated ? children : null;

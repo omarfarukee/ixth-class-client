@@ -7,7 +7,6 @@ export default function EditImage() {
   const [studentData, setStudentData] = useState(null);
 
   useEffect(() => {
-    // Fetch studentData from sessionStorage
     const userData = sessionStorage.getItem('studentData');
     if (userData) {
       const parsedUserData = JSON.parse(userData);
@@ -86,10 +85,10 @@ export default function EditImage() {
             })} className="w-full max-w-xs input input-bordered rounded-3xl" />
             {errors.image && <p className='text-red-500'>please select image file</p>}
           </div>
-          <div className="flex justify-center mt-3 lg:flex-none lg:mt-9 rounded-3xl">
+          <div className="text-white bg-base-300 hover:text-black btn rounded-3xl">
             <div className='flex'>
               <input
-                className="text-white bg-blue-600 hover:text-black btn rounded-3xl"
+                className="text-white btn rounded-3xl"
                 value="Upload"
                 type="submit"
                 disabled={!isDirty}

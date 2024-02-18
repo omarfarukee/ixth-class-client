@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import toast from 'react-hot-toast';
 import NameOfExamGet from '../nameOfExam/page';
 import { IoSettingsOutline } from "react-icons/io5";
+import PrivateRoute from '../Components/page';
 export default function ResultSheet() {
     const [allResults, setAllResults] = useState([]);
    
@@ -49,6 +50,7 @@ export default function ResultSheet() {
         }
 }
     return (
+        <PrivateRoute>
         <div className='p-5'>
             <marquee direction="left" className="w-full font-bold text-red-700">
                 [Note]:Deat teacher's Update exam name and date as per exam name and exam started date
@@ -109,5 +111,6 @@ export default function ResultSheet() {
             </div>
          
         </div>
+        </PrivateRoute>
     )
 }
