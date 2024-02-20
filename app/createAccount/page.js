@@ -29,7 +29,7 @@ export default function CreateAccount() {
             image: ''
         }
         try {
-            const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/create-students', {
+            const response = await fetch('https://ixth-class-sever-omarfarukee.vercel.app/create-students', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -4,7 +4,7 @@ import { RiEmotionSadFill } from "react-icons/ri";
 
 export default function NotFound() {
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center mb-28'>
       <div className='mt-20'>
       <h2 className='flex justify-center text-[200px] text-red-700 animated-bounci'><RiEmotionSadFill /></h2>
       <p className='text-3xl font-bold'>Could not find the page you requested</p>

@@ -33,7 +33,7 @@ export default function EditImage() {
           image: imgData.data.url,
         };
 
-        const updateResponse = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/update/student/${studentData?._id}`, {
+        const updateResponse = await fetch(`https://ixth-class-sever-omarfarukee.vercel.app/update/student/${studentData?._id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function EditImage() {
         </div>
       </div>
       <div>
-        <form onSubmit={handleSubmit(handleAddImage)} className="flex justify-around mb-10">
+        <form onSubmit={handleSubmit(handleAddImage)} className="flex items-center justify-around mb-10">
           <div className="w-full max-w-xs form-control">
             <label className="label"> <span className="label-text">Photo (photo Should be png/jpg format)</span></label>
             <input type="file" multiple {...register("image", {
@@ -85,10 +85,10 @@ export default function EditImage() {
             })} className="w-full max-w-xs input input-bordered rounded-3xl" />
             {errors.image && <p className='text-red-500'>please select image file</p>}
           </div>
-          <div className="text-white bg-base-300 hover:text-black btn rounded-3xl">
+          <div className="mt-8 text-white bg-base-300 hover:text-black btn rounded-3xl">
             <div className='flex'>
               <input
-                className="text-white btn rounded-3xl"
+                className="rounded-3xl"
                 value="Upload"
                 type="submit"
                 disabled={!isDirty}

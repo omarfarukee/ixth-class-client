@@ -58,7 +58,7 @@ const handleUpdatePassword = async (data) => {
   };
 
   try {
-      const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/update/teacher/${studentData?._id}`, {
+      const response = await fetch(`https://ixth-class-sever-omarfarukee.vercel.app/update/teacher/${studentData?._id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',

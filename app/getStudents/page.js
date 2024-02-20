@@ -42,7 +42,7 @@ export default async function AllStudentsGet() {
     const handleDelete = (id) =>{
         const proceed = window.confirm('Are you sure, want to delete this student?')
         if(proceed){
-            fetch( `https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/student/${id}`, {
+            fetch( `https://ixth-class-sever-omarfarukee.vercel.app/student/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())

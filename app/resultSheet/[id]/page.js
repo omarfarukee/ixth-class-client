@@ -28,7 +28,7 @@ export default async function EditResult({ params }) {
         }
 
 
-        const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/updateResult/${result?._id}`, {
+        const response = await fetch(`https://ixth-class-sever-omarfarukee.vercel.app/updateResult/${result?._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,8 +49,8 @@ export default async function EditResult({ params }) {
     }
     return (
         <PrivateRoute>
-            <div>
-                <div className='flex justify-center mt-5 mb-5 text-2xl'>
+            <div className='mb-20 '>
+                <div className='flex justify-center pt-10 mb-5 text-2xl'>
                     <h1>Student Marks edit</h1>
                 </div>
                 <form onSubmit={handleSubmit(handleUpdateResult)}>

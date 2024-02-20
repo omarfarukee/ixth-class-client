@@ -36,7 +36,7 @@ export default function CreateResult() {
             studentCode: data.studentCode || '001'
         }
         try {
-            const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/create-result', {
+            const response = await fetch('https://ixth-class-sever-omarfarukee.vercel.app/create-result', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

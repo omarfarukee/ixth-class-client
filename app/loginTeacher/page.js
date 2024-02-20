@@ -15,7 +15,7 @@ export default function LoginTeacher() {
 
   const handleLogin = async (data) => {
     try {
-      const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/teacher/login', {
+      const response = await fetch('https://ixth-class-sever-omarfarukee.vercel.app/teacher/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

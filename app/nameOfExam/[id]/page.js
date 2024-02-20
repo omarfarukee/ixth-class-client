@@ -16,7 +16,7 @@ export default function UpdateExamName({ params }) {
             date: data.date
         }
         console.log(exam)
-        const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/examName/${id}`, {
+        const response = await fetch(`https://ixth-class-sever-omarfarukee.vercel.app/examName/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export default function UpdateExamName({ params }) {
 
     return (
         <PrivateRoute>
-            <div className='flex justify-center mt-10'>
+            <div className='flex justify-center pt-10 mb-20'>
                 <div className='p-2 bg-base-200 rounded-xl w-96'>
                     <div className='flex justify-center mt-5'>
                         <h1 className='text-2xl'>Update Exam Name Or date</h1>
