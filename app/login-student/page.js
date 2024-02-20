@@ -17,7 +17,7 @@ export default function loginStudent() {
 
   const handleLogin = async (data) => {
     try {
-      const response = await fetch('http://localhost:5000/student/login', {
+      const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/student/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

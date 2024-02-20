@@ -31,7 +31,7 @@ export default function ResultSheet() {
     const handleDelete = (id) =>{
         const proceed = window.confirm('Are you sure, want to delete this student?')
         if(proceed){
-            fetch( `http://localhost:5000/result/delete/${id}`, {
+            fetch( `https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/result/delete/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())

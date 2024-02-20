@@ -4,56 +4,58 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { FaEye } from 'react-icons/fa';
-import  '../teacherAccountCreate/teacherAccount.css'
+import '../teacherAccountCreate/teacherAccount.css'
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 export default function LoginTeacher() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [types, setTypes] = useState(true)
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [types, setTypes] = useState(true)
 
-    const handleLogin = async (data) => {
-        try {
-          const response = await fetch('http://localhost:5000/teacher/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data) 
-          });
-    
-          const responseData = await response.json();
-          console.log('Login response:', responseData.teacher); // Log the entire response
-    
-          if (response.ok) {
-            console.log('Login successful'); // Log success message
-            toast.success(responseData.message);
-            sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
-            console.log('teacher data saved to sessionStorage:', responseData.teacher);
-            router.push('/');
-          } else {
-            console.error('Login failed:', responseData.error || 'fail to login.'); // Log failure message
-            toast.error(responseData.error || 'fail to login.');
-          }
-        } catch (error) {
-          console.error('Error during login:', error); // Log any errors
-          toast.error('An error occurred while logging in.');
-        }
-      ;}
+  const handleLogin = async (data) => {
+    try {
+      const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/teacher/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-    const seePass = (type) => {
-      switch (type) {
-        case "current":
-          setTypes(!types);
-          break;
+      const responseData = await response.json();
+      console.log('Login response:', responseData.teacher); // Log the entire response
+
+      if (response.ok) {
+        console.log('Login successful'); // Log success message
+        toast.success(responseData.message);
+        sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
+        console.log('teacher data saved to sessionStorage:', responseData.teacher);
+        router.push('/');
+      } else {
+        console.error('Login failed:', responseData.error || 'fail to login.'); // Log failure message
+        toast.error(responseData.error || 'fail to login.');
       }
-    };
-    const passwordFieldType = (type) => {
-      switch (type) {
-        case "current":
-          return types ? "password" : "text";
-      }
-    };
+    } catch (error) {
+      console.error('Error during login:', error); // Log any errors
+      toast.error('An error occurred while logging in.');
+    }
+    ;
+  }
+
+  const seePass = (type) => {
+    switch (type) {
+      case "current":
+        setTypes(!types);
+        break;
+    }
+  };
+  const passwordFieldType = (type) => {
+    switch (type) {
+      case "current":
+        return types ? "password" : "text";
+    }
+  };
   return (
     <div className='teacher-login-back-img '>
       <div className='flex justify-center pt-5 pb-5 text-3xl text-white mb-[80px]'>
@@ -81,6 +83,9 @@ export default function LoginTeacher() {
             </div>
             <input className='p-2 mt-4 mb-4 text-black bg-gray-300 bottom-5 w-80 btn rounded-2xl' value="Login" type="submit" />
           </form>
+          <div className='flex justify-center'>
+            <small className="mt-2 font-black text-white">Are you a student? <Link href='/login-student' className='font-bold text-green-500'>Log-in</Link></small>
+          </div>
         </div>
       </div>
     </div>

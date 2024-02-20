@@ -28,7 +28,7 @@ export default async function EditResult({ params }) {
         }
 
 
-        const response = await fetch(`http://localhost:5000/updateResult/${result?._id}`, {
+        const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/updateResult/${result?._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

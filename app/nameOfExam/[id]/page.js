@@ -16,7 +16,7 @@ export default function UpdateExamName({ params }) {
             date: data.date
         }
         console.log(exam)
-        const response = await fetch(`http://localhost:5000/examName/${id}`, {
+        const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/examName/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

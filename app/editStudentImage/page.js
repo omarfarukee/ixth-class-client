@@ -33,7 +33,7 @@ export default function EditImage() {
           image: imgData.data.url,
         };
 
-        const updateResponse = await fetch(`http://localhost:5000/update/student/${studentData?._id}`, {
+        const updateResponse = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/update/student/${studentData?._id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

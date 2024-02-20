@@ -30,7 +30,7 @@ export default function TeacherAccountCreate() {
         role:'teacher'
     }
     try {
-        const response = await fetch('http://localhost:5000/create-teachers', {
+        const response = await fetch('https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/create-teachers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

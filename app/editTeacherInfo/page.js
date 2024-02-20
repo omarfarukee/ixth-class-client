@@ -32,7 +32,7 @@ export default function EditTeacherInfo() {
         };
         console.log(dataOfTeacher)
        
-            const response = await fetch(`http://localhost:5000/update/teacher/${studentData?._id}`, {
+            const response = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/update/teacher/${studentData?._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

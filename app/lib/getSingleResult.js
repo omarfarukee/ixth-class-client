@@ -1,6 +1,6 @@
 export default async function getSingleResult(id) {
 
-    const result = await fetch(`http://localhost:5000/result/${id}`)
+    const result = await fetch(`https://ixth-class-sever-2nvj5rvt7-omarfarukee.vercel.app/result/${id}`)
 
     if(!result.ok){
         throw new Error('there was an error fetching')
