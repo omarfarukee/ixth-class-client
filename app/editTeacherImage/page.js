@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react'
 import { FcEditImage } from 'react-icons/fc';
 import { useForm } from 'react-hook-form';

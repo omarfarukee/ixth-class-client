@@ -1,4 +1,5 @@
 // components/PrivateRoute.js
+"use client"
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import useAuth from '../Hooks/useAuth';
