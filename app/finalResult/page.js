@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import getAllResults from '../lib/getStudentResults';
 import { IoSettingsOutline } from "react-icons/io5";
 import NameOfExamGet from '../nameOfExam/page';
-
+import PrivateRoute from '../Components/page';
 export default function FinalResultSheet() {
     const [allResults, setAllResults] = useState([]);
     const [gpaZeroCount, setGpaZeroCount] = useState(0);
@@ -44,6 +44,7 @@ export default function FinalResultSheet() {
 
     const total = (gpaZeroCount + gpaHigherThanZeroCount)
     return (
+        <PrivateRoute>
         <div className='p-5'>
             {allResults ? 
             <marquee direction="left" className="font-bold text-blue-700">
@@ -116,6 +117,7 @@ export default function FinalResultSheet() {
                 working on progress<span className='animate-pulse'>........</span></p>
             }
         </div>
+        </PrivateRoute>
     );
 }
 
