@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './teacherAccount.css'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form';
@@ -42,10 +42,10 @@ export default function TeacherAccountCreate() {
         console.log(responseData.teacher)
         if (response.ok) {
             console.log('save student', responseData);
-            toast.success('teachers account Created successfully, please update Your PROFILE');
-            sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
-            console.log('Student data saved to sessionStorage', responseData.teacher);
-            router.push('/');
+            toast.success('teachers account Created successfully');
+            // sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
+            // console.log('Student data saved to sessionStorage', responseData.teacher);
+            window.location.reload();
         } else {
             toast.error(responseData.error || 'An error occurred while creating the student.');
         }
@@ -54,6 +54,20 @@ export default function TeacherAccountCreate() {
         toast.error('An error occurred while creating the student.');
     }
 
+};
+
+const [studentData, setStudentData] = useState(null);
+
+useEffect(() => {
+    const userData = sessionStorage.getItem('studentData');
+    if (userData) {
+        const parsedUserData = JSON.parse(userData);
+        setStudentData(parsedUserData);
+    }
+}, []);
+
+if(studentData){
+//   router.push('/');
 };
   const [types, setTypes] = useState(true)
 

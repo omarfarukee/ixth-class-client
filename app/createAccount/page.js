@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './account.css'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -44,7 +44,7 @@ export default function CreateAccount() {
                 toast.success('Student ID Created successfully, please update Your PROFILE');
                 sessionStorage.setItem('studentData', JSON.stringify(responseData.student));
                 console.log('Student data saved to sessionStorage', responseData.stdent);
-                router.push('/');
+                window.location.reload();
             } else {
                 toast.error(responseData.error || 'An error occurred while creating the student.');
             }
@@ -53,6 +53,20 @@ export default function CreateAccount() {
             toast.error('An error occurred while creating the student.');
         }
 
+    };
+
+    const [studentData, setStudentData] = useState(null);
+
+    useEffect(() => {
+        const userData = sessionStorage.getItem('studentData');
+        if (userData) {
+            const parsedUserData = JSON.parse(userData);
+            setStudentData(parsedUserData);
+        }
+    }, []);
+  
+    if(studentData){
+      router.push('/');
     };
 
     const [types, setTypes] = useState(true)
@@ -116,8 +130,8 @@ export default function CreateAccount() {
                             </div>
                             <div className="w-full max-w-xs mb-2 border-b-2 form-control ">
                                 <input type="text" {...register("blod_group", {
-                                    required: "Blod group is Required !"
-                                })} className="w-full max-w-xs mb-2 bg-transparent rounded-lg input " placeholder="Blod Group..." />
+                                    required: "Blood group is Required !"
+                                })} className="w-full max-w-xs mb-2 bg-transparent rounded-lg input " placeholder="Blood Group..." />
                                 {errors.blod_group && <small className='ml-2 text-red-500 '>{errors.blod_group?.message}</small>}
                             </div>
                         </div>

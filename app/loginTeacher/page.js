@@ -2,7 +2,7 @@
 'use client'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaEye } from 'react-icons/fa';
 import '../teacherAccountCreate/teacherAccount.css'
 import toast from 'react-hot-toast';
@@ -31,7 +31,7 @@ export default function LoginTeacher() {
         toast.success(responseData.message);
         sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
         console.log('teacher data saved to sessionStorage:', responseData.teacher);
-        router.push('/');
+        window.location.reload();
       } else {
         console.error('Login failed:', responseData.error || 'fail to login.'); // Log failure message
         toast.error(responseData.error || 'fail to login.');
@@ -42,7 +42,19 @@ export default function LoginTeacher() {
     }
     ;
   }
+  const [studentData, setStudentData] = useState(null);
 
+  useEffect(() => {
+      const userData = sessionStorage.getItem('studentData');
+      if (userData) {
+          const parsedUserData = JSON.parse(userData);
+          setStudentData(parsedUserData);
+      }
+  }, []);
+
+  if(studentData){
+    router.push('/');
+  };
   const seePass = (type) => {
     switch (type) {
       case "current":

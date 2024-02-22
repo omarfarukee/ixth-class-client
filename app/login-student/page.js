@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { FaEye } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-// import { useRouter } from 'next/router';
+
 
 import Link from 'next/link';
 export default function loginStudent() {
@@ -22,28 +22,43 @@ export default function loginStudent() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data) // Use 'data' instead of 'studentData'
+        body: JSON.stringify(data)
       });
 
       const responseData = await response.json();
-      console.log('Login response:', responseData.student); // Log the entire response
+      console.log('Login response:', responseData.student);
 
       if (response.ok) {
-        console.log('Login successful'); // Log success message
+        // console.log('Login successful');
         toast.success(responseData.message);
         sessionStorage.setItem('studentData', JSON.stringify(responseData.student));
         console.log('Student data saved to sessionStorage:', responseData.student);
-        router.push('/');
+        window.location.reload();
       } else {
-        console.error('Login failed:', responseData.error || 'fail to login.'); // Log failure message
+        console.error('Login failed:', responseData.error || 'fail to login.');
         toast.error(responseData.error || 'fail to login.');
       }
     } catch (error) {
-      console.error('Error during login:', error); // Log any errors
+      console.error('Error during login:', error);
       toast.error('An error occurred while logging in.');
     }
-    ;
+    
   }
+
+  const [studentData, setStudentData] = useState(null);
+
+  useEffect(() => {
+      const userData = sessionStorage.getItem('studentData');
+      if (userData) {
+          const parsedUserData = JSON.parse(userData);
+          setStudentData(parsedUserData);
+      }
+  }, []);
+
+  if(studentData){
+    router.push('/');
+  };
+  
   const [types, setTypes] = useState(true)
 
   const seePass = (type) => {

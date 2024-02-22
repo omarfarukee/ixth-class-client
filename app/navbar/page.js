@@ -10,17 +10,15 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useStudentData } from '../Hooks/getStudentData';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import logos from '../../public/logo/logo.png'
 export default function page() {
+  
 const router = useRouter();
   const studentData = useStudentData();
   const handleLogout = () => {
     sessionStorage.removeItem('studentData')
     toast.success('logged out successfully')
-     router.push('/')
      window.location.reload();
   }
-
 
   return (
     <div>
@@ -35,7 +33,7 @@ const router = useRouter();
               <li><Link href='/getStudents'>Student profile</Link></li> 
               <li><Link href='/finalResult'>Final Result</Link></li>
               {!studentData && <li><Link href='/createAccount'>Create Student Account</Link></li>}
-             {studentData?.role && <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>}
+             {studentData?.role === 'teacher-admin' && <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>}
              {!studentData && <li><Link href='/loginTeacher'>Teacher's Login</Link></li>}
             </ul>
           </div>
@@ -68,6 +66,7 @@ const router = useRouter();
                 {studentData?.role && <li><Link href='/createResult'>Create Result</Link></li>}
                 {studentData?.role && <li><Link href='/resultSheet'>Result Sheet</Link></li>}
                 {studentData?.role && <li><Link href='/finalResult'>Final Result</Link></li>}
+                {studentData?.role === "teacher-admin" && <li><Link href='/allTeachers'>Teacher's Log</Link></li>}
                 <li onClick={() => handleLogout()} className='text-white bg-red-500 rounded-sm'><a>LOG-OUT</a></li>
               </ul>
             </div>
