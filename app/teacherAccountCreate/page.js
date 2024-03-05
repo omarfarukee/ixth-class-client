@@ -43,8 +43,8 @@ export default function TeacherAccountCreate() {
         if (response.ok) {
             console.log('save student', responseData);
             toast.success('teachers account Created successfully');
-            // sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
-            // console.log('Student data saved to sessionStorage', responseData.teacher);
+            sessionStorage.setItem('studentData', JSON.stringify(responseData.teacher));
+            console.log('Student data saved to sessionStorage', responseData.teacher);
             window.location.reload();
         } else {
             toast.error(responseData.error || 'An error occurred while creating the student.');
