@@ -33,7 +33,7 @@ const router = useRouter();
               <li><Link href='/getStudents'>Student profile</Link></li> 
               <li> <Link href='/finalResult'>Result Sheet</Link></li>
               {!studentData && <li><Link href='/createAccount'>Create Student Account</Link></li>}
-             {studentData?.role === 'teacher-admin' && <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>}
+             {!studentData && <li><Link href='/teacherAccountCreate'>Create Techer Acoount</Link></li>}
              {!studentData && <li><Link href='/loginTeacher'>Teacher's Login</Link></li>}
             </ul>
           </div>
