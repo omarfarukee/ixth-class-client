@@ -1,8 +1,8 @@
-### It is next js based project. 
+# It is next js based project. 
+## Admin email = omar1920@gmail.com
+## Admin password = 12345*A22
 to visit the project properly login with the Admin Teacher role . 
 
-## Admin email = omar1920@gmail.com
-## Admin password = omar1920@gmail.com
 
 ### technology used -- 
 - Next js 
