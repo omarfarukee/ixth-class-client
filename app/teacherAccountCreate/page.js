@@ -67,7 +67,7 @@ useEffect(() => {
 }, []);
 
 if(studentData){
-//   router.push('/');
+  router.push('/');
 };
   const [types, setTypes] = useState(true)
 
