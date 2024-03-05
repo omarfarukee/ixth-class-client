@@ -1,6 +1,6 @@
 # It is next js based project. 
-## Admin email = omar1920@gmail.com
-## Admin password = 12345*A22
+## (Admin email = omar1920@gmail.com (login on teacher's login page)
+## Admin password = 12345*A22)
 to visit the project properly login with the Admin Teacher role . 
 
 
