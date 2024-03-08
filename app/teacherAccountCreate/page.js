@@ -87,7 +87,7 @@ if(studentData){
   return (
     <div className='teacher-login-back-img'>
        <div className='flex justify-center pt-5 pb-5 text-3xl text-white'>
-                <h1>Create Student Account</h1>
+                <h1>Create Teacher's Account</h1>
             </div>
             <div className='flex justify-center'>
                 <div className='h-full p-5 rounded-lg lg:w-5/6 teacher-from-blur'>
