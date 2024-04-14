@@ -85,7 +85,9 @@ export default function loginStudent() {
             <div className="max-w-xs mb-4 border-b-2 w-80 form-control">
               <input type="email" {...register("email", {
                 required: "Email is Required !"
-              })} className="w-full max-w-xs mb-5 text-white bg-transparent rounded-lg input" placeholder="✉ Email..." />
+              })} className="w-full max-w-xs mb-5 text-white bg-transparent rounded-lg input"
+              defaultValue='umarfaruque1920@gmail.com'
+              placeholder="✉ Email..." />
               {errors.email && <small className='mt-1 ml-2 text-red-500'>{errors.email.message}</small>}
             </div>
             <div className="max-w-xs mb-3 border-b-2 w-80 form-control">
@@ -93,7 +95,9 @@ export default function loginStudent() {
                 required: "Password is Required !",
                 minLength: { value: 6, message: "Password must be 6 characters long" },
                 pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
-              })} className="w-full max-w-xs text-white bg-transparent rounded-lg input" placeholder="🗝 Password..." />
+              })} className="w-full max-w-xs text-white bg-transparent rounded-lg input"
+              defaultValue='Porosh1122**'
+              placeholder="🗝 Password..." />
               <div className="flex justify-end">
                 <a className='relative flex justify-end ml-2 text-2xl text-white cursor-pointer w-7 bottom-9 right-2' title="See password" onClick={() => seePass("current")}><FaEye /></a>
               </div>

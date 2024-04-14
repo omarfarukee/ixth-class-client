@@ -10,6 +10,8 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useStudentData } from '../Hooks/getStudentData';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import logos from '../../public/logo/logos.png'
+import Image from "next/image";
 export default function page() {
   
 const router = useRouter();
@@ -39,7 +41,7 @@ const router = useRouter();
           </div>
         </div>
         <div className="navbar-center">
-        <Link href='/'> <img className='rounded-lg'  src='https://scontent.fdac5-1.fna.fbcdn.net/v/t1.15752-9/428425252_423680740096164_4514252536291792824_n.png?_nc_cat=110&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=ii0A0dVD90oAX_QU5cS&_nc_ht=scontent.fdac5-1.fna&oh=03_AdTEZOgnInKmo-h9asQssNzVfEKdYzPpQZn-z99t_EEdTQ&oe=65F91132'/></Link>
+        <Link href='/'><Image className='rounded-lg' src={logos}/></Link>
         </div>
         <div className="navbar-end">
           {studentData ?
